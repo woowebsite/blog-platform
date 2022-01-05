@@ -1,0 +1,23 @@
+@import "assets/variables.scss";
+
+.loginWrap {
+  max-width: 32rem;
+  margin: 40px auto;
+}
+
+.container {
+  padding: rem(50) rem(30);
+  padding: 15px;
+}
+
+.forgot-pass {
+  text-align: center;
+  a {
+    color: $primary-color;
+    border: none;
+    text-decoration: none;
+    &:hover {
+      color: $link-active;
+    }
+  }
+}
