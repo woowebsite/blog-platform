@@ -21,7 +21,6 @@ const TextEditable: React.FC<TextEditableProps & SelectProps<any>> = ({
   defaultText = 'Text',
   defaultValue = null,
   onChange,
-  style,
   showEdit=false,
   ...others
 }) => {
@@ -145,7 +144,7 @@ const TextEditable: React.FC<TextEditableProps & SelectProps<any>> = ({
     }
   };
   return (
-    <div style={style}>
+    <div>
       <span className={styles.text2combo}>
         {isEditable && renderEditInput()}
         {!isEditable && (
