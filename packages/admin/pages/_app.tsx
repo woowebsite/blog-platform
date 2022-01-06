@@ -2,7 +2,6 @@ import { AppInitialProps } from 'next/app';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { AppProps } from 'next-redux-wrapper';
-import withReduxSaga from 'next-redux-saga';
 import { withRouter } from 'next/router';
 
 import messages from 'shared/localeHelper';
@@ -40,4 +39,4 @@ class MyApp extends React.Component<AppProps & AppInitialProps> {
   }
 }
 
-export default withRouter(withReduxSaga(MyApp));
+export default withRouter(MyApp);

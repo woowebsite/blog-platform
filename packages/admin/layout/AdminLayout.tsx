@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { useIntl } from 'react-intl';
 import MenuLeft from './MenuLeft';
 import getMenuData, { hasPemission } from 'services/menu';
-import { getSession } from 'next-auth/client';
+import { setOptions, getSession } from 'next-auth/client';
 
 // components
 import TopBar from '~/components/TopBar';
@@ -15,9 +15,9 @@ const { Header, Content, Sider } = Layout;
 export const UserContext = React.createContext(null);
 
 function withAdminLayout(WrappedComponent) {
-  const AdminLayout = props => {
+  const AdminLayout = (props) => {
     const { formatMessage, messages } = useIntl();
-    const t = id => formatMessage({ id });
+    const t = (id) => formatMessage({ id });
 
     return (
       <Layout>
@@ -38,9 +38,12 @@ function withAdminLayout(WrappedComponent) {
     );
   };
 
-  AdminLayout.getInitialProps = async context => {
+  // use for ssr
+  setOptions({ baseUrl: 'http://localhost:3001/admin' });
+  AdminLayout.getInitialProps = async (context) => {
     const { ctx } = context;
     const session = await getSession({ req: ctx.req });
+    console.log('session', session);
 
     /*
      * This happens on server only, ctx.req is available means it's being

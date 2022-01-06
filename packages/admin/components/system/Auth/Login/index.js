@@ -1,17 +1,16 @@
-import React from "react";
-import { connect } from "react-redux";
-import Link from "next/link";
-import { signIn } from "next-auth/client";
-import { useIntl } from "react-intl";
-import SocialConenct from "~/features/SocialConnect";
+import React from 'react';
+import Link from 'next/link';
+import { signIn } from 'next-auth/client';
+import { useIntl } from 'react-intl';
+import SocialConenct from '~/features/SocialConnect';
 
-import style from "../style.module.scss";
+import style from '../style.module.scss';
 
-import Button from "components/Button";
-import Form from "components/Form";
-import Input from "components/Input";
+import Button from 'components/Button';
+import Form from 'components/Form';
+import Input from 'components/Input';
 
-import useTranslate from "hooks/useTranslate";
+import useTranslate from 'hooks/useTranslate';
 
 const { Item, useForm } = Form;
 
@@ -20,22 +19,18 @@ const Login = (props) => {
   const { formatMessage } = useIntl();
   const t = (id, values) => formatMessage({ id }, values);
 
-  const {
-    user: { loading },
-  } = props;
-
   const onSubmit = (data) => {
     form
       .validateFields()
       .then((values) => {
-        signIn("credentials", {
+        signIn('credentials', {
           email: values.email,
           password: values.password,
-          callbackUrl: "/users/albums",
+          callbackUrl: '/users/albums',
         });
       })
       .catch((errorInfo) => {
-        console.log("Error: ", errorInfo);
+        console.log('Error: ', errorInfo);
       });
   };
 
@@ -43,13 +38,13 @@ const Login = (props) => {
     <div className={style.loginWrap}>
       <div className="text-center mb-5">
         <h1 className="mb-5">
-          <strong>{t("signin.title")}</strong>
+          <strong>{t('signin.title')}</strong>
         </h1>
       </div>
 
       <div className={`card ${style.container}`}>
         <div className="text-dark font-size-24 text-center mb-3">
-          <strong>{t("signin.buttons.loginWithEmail")}</strong>
+          <strong>{t('signin.buttons.loginWithEmail')}</strong>
         </div>
         <Form
           form={form}
@@ -65,13 +60,13 @@ const Login = (props) => {
             rules={[
               {
                 required: true,
-                message: useTranslate("validator.required", {
-                  field: "signin.placeholder.email",
+                message: useTranslate('validator.required', {
+                  field: 'signin.placeholder.email',
                 }),
               },
             ]}
           >
-            <Input size="large" placeholder={t("signin.placeholder.email")} />
+            <Input size="large" placeholder={t('signin.placeholder.email')} />
           </Item>
           <Item
             name="password"
@@ -79,8 +74,8 @@ const Login = (props) => {
             rules={[
               {
                 required: true,
-                message: useTranslate("validator.required", {
-                  field: "signin.placeholder.password",
+                message: useTranslate('validator.required', {
+                  field: 'signin.placeholder.password',
                 }),
               },
             ]}
@@ -88,7 +83,7 @@ const Login = (props) => {
             <Input
               size="large"
               type="password"
-              placeholder={t("signin.placeholder.password")}
+              placeholder={t('signin.placeholder.password')}
             />
           </Item>
           <Button
@@ -97,22 +92,21 @@ const Login = (props) => {
             size="large"
             className="text-center w-100"
             htmlType="submit"
-            loading={loading}
             block
           >
-            <strong>{t("signin.buttons.login")}</strong>
+            <strong>{t('signin.buttons.login')}</strong>
           </Button>
         </Form>
-        <div className={style["forgot-pass"]}>
+        <div className={style['forgot-pass']}>
           <Link href="/auth/forgot-password">
-            {t("signin.buttons.forgotPass")}
+            {t('signin.buttons.forgotPass')}
           </Link>
         </div>
       </div>
       <div className="text-center pt-2 mb-auto mt-4">
-        <span className="mr-2">{t("signin.noAccount")}</span>
+        <span className="mr-2">{t('signin.noAccount')}</span>
         <h4 className="mb-2">
-          <strong>{t("signin.buttons.login")}</strong>
+          <strong>{t('signin.buttons.login')}</strong>
         </h4>
         <div className="d-flex justify-content-around">
           <SocialConenct visibleTwitter={false} />
@@ -122,4 +116,4 @@ const Login = (props) => {
   );
 };
 
-export default connect(({ user, settings }) => ({ user }))(Login);
+export default Login;

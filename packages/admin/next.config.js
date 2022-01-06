@@ -11,7 +11,7 @@ const themeVariables = lessToJS(
 module.exports = {
   env: {
     mockApi: 'https://5eb3d8ee974fee0016ecdba0.mockapi.io/api/v1',
-    NEXTAUTH_URL: 'http://localhost:3001/admin/api/auth',
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL
   },
   basePath: '/admin',
   i18n: {

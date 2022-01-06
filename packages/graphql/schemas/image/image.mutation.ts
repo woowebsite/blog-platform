@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import mkdirp from 'mkdirp';
 
 // const UPLOAD_DIR = './images'
-const UPLOAD_DIR = '../client/public/images';
+const UPLOAD_DIR = '../admin/public/images';
 mkdirp.sync(UPLOAD_DIR);
 
 const storeUpload = ({ stream, filename }) => {

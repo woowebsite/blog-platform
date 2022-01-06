@@ -21,7 +21,7 @@ const options = {
         username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
         password: { label: 'Password', type: 'password' },
       },
-      authorize: async credentials => {
+      authorize: async (credentials) => {
         const client = createApolloClient({}, undefined);
 
         try {
