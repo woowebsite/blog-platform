@@ -15,7 +15,8 @@ input ProductBaseInput {
   title: String
   description: String
   user_id: Int
-  taxonomies: [Int]
+  publishDate: Date
+  status: String
 }
 
 type ProductBasesPaged {
@@ -33,6 +34,6 @@ type Query {
 }
 
 type Mutation {
-  upsertProductBase(data: ProductBaseInput): ProductBase
+  upsertProductBase(data: ProductBaseInput, metadata: [ProductBaseMetaInput], taxonomies: [Int]): ProductBase
   deleteProductBase(id: Int): Int
 }

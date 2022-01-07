@@ -24,6 +24,11 @@ export const en = {
         allProductBase: 'All Product bases',
         createProductBase: 'Create product base',
       },
+      pages: {
+        title: 'Pages',
+        allPage: 'All pages',
+        createPage: 'Create page',
+      },
     },
     topbar: {
       report: 'Report',
@@ -87,6 +92,13 @@ export const en = {
         tags: 'Tags',
       },
     },
+    pageForm: {
+      label: {
+        title: 'Title',
+        description: 'Description',
+        thumbnails: 'Thumbnails',
+      },
+    },
     userCreateform: {
       label: {
         name: 'Name',
@@ -133,7 +145,7 @@ export const en = {
       },
     },
   },
-  '/admin/users': {
+  '/users': {
     title: 'All users',
     subTitle: 'This is subtitle',
     pageHeader: {
@@ -142,7 +154,7 @@ export const en = {
       },
     },
   },
-  '/admin/productbases': {
+  '/productbases': {
     title: 'Product Bases',
     subTitle: 'This is subtitle',
     pageHeader: {
@@ -151,10 +163,13 @@ export const en = {
       },
     },
   },
-  '/admin/users/new': {
+  '/users/new': {
     title: 'Create an user',
   },
-  '/admin/users/[id]': {
+  '/pages/new': {
+    title: 'Create a page',
+  },
+  '/users/[id]': {
     title: 'Update user',
     pageHeader: {
       buttons: {
