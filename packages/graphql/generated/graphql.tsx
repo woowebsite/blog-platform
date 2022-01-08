@@ -136,7 +136,7 @@ export type Mutation = {
   upsertPermission?: Maybe<Permission>;
   deletePermission?: Maybe<Scalars['Int']>;
   upsertProductBase?: Maybe<ProductBase>;
-  deleteProductBase?: Maybe<Scalars['Int']>;
+  deleteProductBase?: Maybe<Scalars['Boolean']>;
   createRole?: Maybe<Role>;
   upsertTermTaxonomy?: Maybe<TermTaxonomy>;
   deleteTermTaxonomy?: Maybe<Scalars['Int']>;
@@ -180,6 +180,8 @@ export type MutationDeletePermissionArgs = {
 
 export type MutationUpsertProductBaseArgs = {
   data?: Maybe<ProductBaseInput>;
+  metadata?: Maybe<Array<Maybe<ProductBaseMetaInput>>>;
+  taxonomies?: Maybe<Array<Maybe<Scalars['Int']>>>;
 };
 
 
@@ -270,6 +272,11 @@ export type ProductBase = {
   __typename?: 'ProductBase';
   id?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  publishDate?: Maybe<Scalars['Date']>;
+  status?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['Int']>;
   user?: Maybe<User>;
 };
 
@@ -277,8 +284,18 @@ export type ProductBaseInput = {
   id?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['Int']>;
-  taxonomies?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  publishDate?: Maybe<Scalars['Date']>;
+  status?: Maybe<Scalars['String']>;
+};
+
+export type ProductBaseMetaInput = {
+  ref_id?: Maybe<Scalars['Int']>;
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+  data?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
 };
 
 export type ProductBasesPaged = {

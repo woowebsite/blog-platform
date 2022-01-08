@@ -22,22 +22,25 @@ const menu = (
 export const columns = (t): ColumnsType<any> => {
   return [
     {
-      title: t('productBaseTable.columns.id'),
+      title: t('page.fields.id'),
       dataIndex: 'id',
       key: 'id',
       align: 'center',
     },
     {
-      title: t('productBaseTable.columns.title'),
+      title: t('page.fields.title'),
       dataIndex: 'title',
       key: 'title',
       width: '25%',
+      render: (text, record) => {
+        return text ? <Link href={`/pages/${record.id}`}>{text}</Link> : text;
+      },
     },
     {
-      title: t('productBaseTable.columns.createdAt'),
+      title: t('page.fields.createdAt'),
       dataIndex: 'created_at',
       key: 'createdAt',
-      render: text => <span className="text-uppercase">{text}</span>,
+      render: (text) => <span className="text-uppercase">{text}</span>,
     },
     {
       title: '',
@@ -47,7 +50,10 @@ export const columns = (t): ColumnsType<any> => {
         <Space size="middle">
           <a>Delete</a>
           <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+            <a
+              className="ant-dropdown-link"
+              onClick={(e) => e.preventDefault()}
+            >
               Actions <DownOutlined />
             </a>
           </Dropdown>

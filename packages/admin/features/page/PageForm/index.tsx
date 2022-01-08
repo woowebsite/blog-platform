@@ -91,25 +91,25 @@ const PageForm = forwardRef<any, PageFormProps>((props, ref) => {
           {
             required: true,
             message: useTranslate('validator.required', {
-              field: 'pageForm.label.title',
+              field: 'page.fields.title',
             }),
           },
         ]}
-        label={useTranslate('pageForm.label.title')}
+        label={useTranslate('page.fields.title')}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
         name="description"
-        label={useTranslate('pageForm.label.description')}
+        label={useTranslate('page.fields.description')}
       >
         <Input.TextArea />
       </Form.Item>
 
       <Form.Item
         name="thumbnails"
-        label={useTranslate('pageForm.label.thumbnails')}
+        label={useTranslate('page.fields.thumbnails')}
       >
         <UploadImage setImageUrl={onSetImageUrl} />
       </Form.Item>

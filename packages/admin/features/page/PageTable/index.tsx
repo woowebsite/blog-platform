@@ -9,12 +9,11 @@ import FilterForm from './FilterForm';
 
 import { columns } from './columns';
 import productBaseService from 'services/productBaseService';
+import useTranslate from 'hooks/useTranslate';
 
 const PageTable = (props) => {
   // DEFINES
   const tableRef = React.useRef(null);
-  const { formatMessage } = useIntl();
-  const t = (id) => formatMessage({ id });
 
   // RENDER
   const renderFilter = (props) => <FilterForm {...props} />;
@@ -34,7 +33,7 @@ const PageTable = (props) => {
           }
         />
       )}
-      columns={columns(t)}
+      columns={columns(useTranslate)}
     />
   );
 

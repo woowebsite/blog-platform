@@ -1,3 +1,5 @@
+import routers from '~/constants/routers';
+
 export const en = {
   common: {
     topBar: {
@@ -36,6 +38,17 @@ export const en = {
     },
     validator: {
       required: 'Please input {field}',
+    },
+    notification: {
+      success: {
+        message: 'Successfully',
+        save: 'Saved successfully',
+        sent: 'Sent successfully',
+        delete: 'Deleted successfully',
+      },
+      error: {
+        message: 'Error',
+      },
     },
     messages: {
       changePassword: {
@@ -93,11 +106,13 @@ export const en = {
         tags: 'Tags',
       },
     },
-    pageForm: {
-      label: {
+    page: {
+      fields: {
+        id: 'Id',
         title: 'Title',
         description: 'Description',
         thumbnails: 'Thumbnails',
+        createdAt: 'Publish date',
       },
     },
     userCreateform: {
@@ -167,8 +182,25 @@ export const en = {
   '/users/new': {
     title: 'Create an user',
   },
+  [routers.pages.all]: {
+    title: 'All pages',
+  },
   '/pages/new': {
     title: 'Create a page',
+    pageHeader: {
+      buttons: {
+        allPage: 'All page',
+      },
+    },
+  },
+  '/pages/[id]': {
+    title: 'Update a page',
+    subTitle: 'Update a page after create',
+    pageHeader: {
+      buttons: {
+        allPage: 'All page',
+      },
+    },
   },
   '/users/[id]': {
     title: 'Update user',

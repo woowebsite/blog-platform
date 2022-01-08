@@ -1,6 +1,11 @@
 type ProductBase {
   id: Int
   title: String
+  description: String
+  publishDate: Date
+  status: String
+  type: String
+  user_id: Int
   user: User
 }
 
@@ -40,5 +45,5 @@ type Mutation {
     metadata: [ProductBaseMetaInput]
     taxonomies: [Int]
   ): ProductBase
-  deleteProductBase(id: Int): Int
+  deleteProductBase(id: Int): Boolean
 }

@@ -7,7 +7,7 @@ import _ from 'lodash';
 
 const getModel = (modelName: string) => {
   const model = gqlSchemas.__schema.types.find(
-    t => t.kind === 'OBJECT' && t.name === modelName,
+    (t) => t.kind === 'OBJECT' && t.name === modelName,
   );
   return model;
 };
@@ -25,26 +25,25 @@ function baseService(options: {
   });
 
   const baseDefinitions = {
-    getAll: options => {
+    getAll: (options) => {
       return withQuery(baseGql.getAll, options);
     },
-    get: options => {
+    get: (options) => {
       return withQuery(baseGql.get, options);
     },
-    upsert: options => {
+    upsert: (options) => {
       return withMutation(baseGql.upsert, options);
     },
-    create: () => {
-      return withMutation(baseGql.create);
+    create: (options) => {
+      return withMutation(baseGql.create, options);
     },
-    update: variables => {
-      return withMutation(baseGql.update);
+    update: (options) => {
+      return withMutation(baseGql.update, options);
     },
-    delete: () => {
-      return withMutation(baseGql.delete);
+    delete: (options) => {
+      return withMutation(baseGql.delete, options);
     },
   };
-
 
   return { ...definitions, ...baseDefinitions };
 }
