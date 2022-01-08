@@ -137,7 +137,6 @@ export const topMenu = [
   {
     title: 'topbar.report',
     key: 'report',
-    icon: 'fe fe-home',
     url: '/report',
     position: 'top',
     roles: [RoleType.SysAdmin],

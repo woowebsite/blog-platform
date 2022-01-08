@@ -41,20 +41,25 @@ module.exports = withTM({
     // Make root is default or any node_modules
     config.resolve.modules = [__dirname, 'node_modules'];
 
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
     if (isServer) {
       const antStyles = /antd\/.*?\/style.*?/;
-      const origExternals = [...config.externals];
-      config.externals = [
-        (context, request, callback) => {
-          if (request.match(antStyles)) return callback();
-          if (typeof origExternals[0] === 'function') {
-            origExternals[0](context, request, callback);
-          } else {
-            callback();
-          }
-        },
-        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
-      ];
+      // const origExternals = [...config.externals];
+      // config.externals = [
+      //   (context, request, callback) => {
+      //     if (request.match(antStyles)) return callback();
+      //     if (typeof origExternals[0] === 'function') {
+      //       origExternals[0](context, request, callback);
+      //     } else {
+      //       callback();
+      //     }
+      //   },
+      //   ...(typeof origExternals[0] === 'function' ? [] : origExternals),
+      // ];
 
       config.module.rules.unshift({
         test: antStyles,

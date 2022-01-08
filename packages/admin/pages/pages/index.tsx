@@ -22,7 +22,7 @@ const ManagementPages = (props) => {
         extra={[
           <Button key='3'>Operation</Button>,
           <Button key='2'>Operation</Button>,
-          <RedirectButton type='primary' url={'/pages/new'}>
+          <RedirectButton key='1' type='primary' url={'/pages/new'}>
             {t('buttons.create')}
           </RedirectButton>,
         ]}

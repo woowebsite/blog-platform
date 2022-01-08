@@ -5,6 +5,7 @@ export const en = {
         profile: 'Basic information',
         logout: 'Log out',
       },
+      report: 'Report',
     },
     menu: {
       settings: {
