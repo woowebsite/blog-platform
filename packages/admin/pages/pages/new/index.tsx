@@ -1,14 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
 import {
   Layout,
   Button,
   PageHeader,
   Row,
   Col,
-  Typography,
-  message,
 } from 'antd';
-import { gql } from '@apollo/client';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
@@ -16,13 +13,8 @@ import Card from 'components/Card';
 
 // graphql
 import { withApollo } from 'apollo/apollo';
-import { useRouter } from 'next/dist/client/router';
-import userService from 'services/userService';
-import { productBaseQuery } from 'services/productBaseService';
 
 // inner components
-import ProductBaseBasicForm from '~/features/ProductBaseBasicForm';
-import SocialConenct from '~/features/SocialConnect';
 import PageForm from '~/features/page/PageForm';
 
 //hooks
@@ -31,8 +23,7 @@ import { useIntl } from 'react-intl';
 
 const { Content } = Layout;
 
-interface PageCreateProps {}
-const PageCreate: FC<PageCreateProps> = (props) => {
+const PageCreate = (props) => {
   // DECLARE
   const { messages } = useIntl();
   const formRef: any = React.createRef();

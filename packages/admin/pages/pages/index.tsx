@@ -11,7 +11,7 @@ import { withApollo } from 'apollo/apollo';
 
 const { Content } = Layout;
 
-const ManagementMembers = (props) => {
+const ManagementPages = (props) => {
   const { messages, t } = props;
   return (
     <>
@@ -22,8 +22,8 @@ const ManagementMembers = (props) => {
         extra={[
           <Button key='3'>Operation</Button>,
           <Button key='2'>Operation</Button>,
-          <RedirectButton type='primary' url={'/admin/productbases/new'}>
-            {t('pageHeader.buttons.create')}
+          <RedirectButton type='primary' url={'/pages/new'}>
+            {t('buttons.create')}
           </RedirectButton>,
         ]}
       />
@@ -34,4 +34,4 @@ const ManagementMembers = (props) => {
   );
 };
 
-export default withAdminLayout(withApollo({ ssr: false })(ManagementMembers));
+export default withAdminLayout(withApollo({ ssr: false })(ManagementPages));

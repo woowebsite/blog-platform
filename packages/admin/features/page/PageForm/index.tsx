@@ -13,6 +13,7 @@ import productBaseService from 'services/productBaseService';
 import ComboBoxTaxonomy, { TaxonomyType } from '~/components/ComboBoxTaxonomy';
 import { ProductBase } from '@monorepo/graphql/models';
 import { ProductBaseTypeEnum } from '@monorepo/graphql/types';
+import StatusType from '~/models/StatusType';
 
 interface PageFormProps {
   data?: ProductBase;
@@ -47,12 +48,17 @@ const PageForm = forwardRef<any, PageFormProps>((props, ref) => {
       .validateFields()
       .then((values) => {
         const metadata = [];
-        const taxonomies = values.taxonomies
-          ? Object.values(values.taxonomies)
-          : [];
-        const productBase = data
-          ? { id: data.id, type: ProductBaseTypeEnum.page, ...values }
-          : values;
+        const taxonomies = [];
+        const productBase: ProductBase = data
+          ? {
+              id: data.id,
+              ...values,
+            }
+          : {
+              type: ProductBaseTypeEnum.page,
+              status: StatusType.Actived,
+              ...values,
+            };
         upsertProductBase({
           variables: {
             productBase,

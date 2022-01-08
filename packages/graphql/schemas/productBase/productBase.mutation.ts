@@ -25,7 +25,8 @@ export const Mutation = {
       // Update productBase
       ProductBase.upsert(obj);
 
-      return productBase;
+      findOptions.where = { id: productBase.id };
+      return findOptions;
     },
     after: (productBase) => {
       return productBase;
