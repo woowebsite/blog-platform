@@ -2,24 +2,43 @@ import Link from 'next/link';
 import { ColumnsType } from 'antd/lib/table';
 import { Table, Space, Menu, Dropdown, Button } from 'antd';
 import { useIntl } from 'react-intl';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  CloseCircleFilled,
+  DollarCircleOutlined,
+  DownOutlined,
+  EllipsisOutlined,
+  SendOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+// components
 import Avatar from 'components/Avatar';
+import ButtonModal from 'components/ButtonModal';
+import { ProductBase } from '~/../graphql/models';
 
-const menu = (
+const { Group } = Button;
+const { Item } = Menu;
+
+const menu = (t, actions) => (
   <Menu>
-    <Menu.Item key="1" icon={<UserOutlined />}>
-      1st menu item
-    </Menu.Item>
-    <Menu.Item key="2" icon={<UserOutlined />}>
-      2nd menu item
-    </Menu.Item>
-    <Menu.Item key="3" icon={<UserOutlined />}>
-      3rd menu item
-    </Menu.Item>
+    <Item key="1" icon={<SendOutlined />} onClick={actions.send}>
+      {t('buttons.send')}
+    </Item>
+    <Item key="2" icon={<DollarCircleOutlined />}>
+      {t('buttons.payment')}
+    </Item>
   </Menu>
 );
 
-export const columns = (t): ColumnsType<any> => {
+export const columns = (t, handlers): ColumnsType<any> => {
+  const configDeleteModal = (record: ProductBase) => ({
+    icon: <CloseCircleFilled style={{ color: 'rgb(244, 85, 53)' }} />,
+    title: t('deleteModal.title'),
+    content: t('deleteModal.content'),
+    onOk() {
+      handlers.delete(record.id);
+    },
+  });
+
   return [
     {
       title: t('page.fields.id'),
@@ -37,27 +56,27 @@ export const columns = (t): ColumnsType<any> => {
       },
     },
     {
-      title: t('page.fields.createdAt'),
-      dataIndex: 'created_at',
-      key: 'createdAt',
+      title: t('page.fields.publishDate'),
+      dataIndex: 'publishDate',
+      key: 'publishDate',
       render: (text) => <span className="text-uppercase">{text}</span>,
     },
     {
       title: '',
       key: 'action',
       sorter: false,
-      render: () => (
-        <Space size="middle">
-          <a>Delete</a>
-          <Dropdown overlay={menu}>
-            <a
-              className="ant-dropdown-link"
-              onClick={(e) => e.preventDefault()}
-            >
-              Actions <DownOutlined />
-            </a>
+      render: (value, record, index) => (
+        <Group>
+          <ButtonModal config={configDeleteModal(record)} type="link">
+            {t('buttons.delete')}
+          </ButtonModal>
+          <Dropdown
+            placement="bottomRight"
+            overlay={menu(t, { send: () => handlers.send(record) })}
+          >
+            <Button shape="circle" icon={<EllipsisOutlined />} />
           </Dropdown>
-        </Space>
+        </Group>
       ),
     },
   ];

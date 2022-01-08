@@ -1,5 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import Router from 'next/router';
+import { notification } from 'antd';
 
 // components
 import TableQuickEdit from 'components/TableQuickEdit';
@@ -10,10 +12,36 @@ import FilterForm from './FilterForm';
 import { columns } from './columns';
 import productBaseService from 'services/productBaseService';
 import useTranslate from 'hooks/useTranslate';
+import routers from '~/constants/routers';
 
 const PageTable = (props) => {
   // DEFINES
+  const { messages, formatMessage } = useIntl();
+  const t = (id: string) => formatMessage({ id });
   const tableRef = React.useRef(null);
+
+  const [deleteProductBase] = productBaseService.delete({
+    onCompleted: (result) => {
+      if (result.deleteProductBase) {
+        notification.success({
+          message: t('notification.success.message'),
+          description: t('notification.success.delete'),
+          placement: 'bottomLeft',
+          onClick: () => {
+            console.log('Notification Clicked!');
+          },
+        });
+
+        Router.push(routers.pages.all);
+      }
+    },
+  });
+
+  const handleDelete = (id: number) => {
+    deleteProductBase({
+      variables: { id },
+    });
+  };
 
   // RENDER
   const renderFilter = (props) => <FilterForm {...props} />;
@@ -33,7 +61,9 @@ const PageTable = (props) => {
           }
         />
       )}
-      columns={columns(useTranslate)}
+      columns={columns(useTranslate, {
+        delete: handleDelete,
+      })}
     />
   );
 

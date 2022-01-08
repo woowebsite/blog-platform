@@ -3,6 +3,7 @@ import { Layout, PageHeader, Row, Col, notification } from 'antd';
 import useTranslate from 'hooks/useTranslate';
 import { useIntl } from 'react-intl';
 import Router from 'next/router';
+import { useRouter } from 'next/dist/client/router';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
@@ -12,7 +13,6 @@ import RedirectButton from '~/components/RedirectButton';
 
 // graphql
 import { withApollo } from 'apollo/apollo';
-import { useRouter } from 'next/dist/client/router';
 import productBaseService, {
   productBaseQuery,
 } from 'services/productBaseService';

@@ -67,6 +67,10 @@ export const en = {
       create: 'Create',
       upload: 'Upload',
     },
+    deleteModal: {
+      title: 'Delete',
+      content: 'Do you want to delete?',
+    },
     userTable: {
       columns: {
         id: 'Id',
@@ -112,7 +116,7 @@ export const en = {
         title: 'Title',
         description: 'Description',
         thumbnails: 'Thumbnails',
-        createdAt: 'Publish date',
+        publishDate: 'Publish date',
       },
     },
     userCreateform: {
@@ -185,7 +189,7 @@ export const en = {
   [routers.pages.all]: {
     title: 'All pages',
   },
-  '/pages/new': {
+  [routers.pages.create]: {
     title: 'Create a page',
     pageHeader: {
       buttons: {

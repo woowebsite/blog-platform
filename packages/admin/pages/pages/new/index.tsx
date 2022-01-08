@@ -1,15 +1,11 @@
 import React from 'react';
-import {
-  Layout,
-  Button,
-  PageHeader,
-  Row,
-  Col,
-} from 'antd';
+import { Layout, PageHeader, Row, Col } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
 import Card from 'components/Card';
+import RedirectButton from '~/components/RedirectButton';
+import Button from '~/components/Button';
 
 // graphql
 import { withApollo } from 'apollo/apollo';
@@ -43,10 +39,9 @@ const PageCreate = (props) => {
         title={title}
         subTitle={messages.subTitle}
         extra={[
-          <Button key="3">Duplicate</Button>,
-          <Button key="2" danger>
-            {useTranslate('buttons.delete')}
-          </Button>,
+          <RedirectButton url={'/pages'}>
+            {messages['pageHeader.buttons.allPage']}
+          </RedirectButton>,
           <Button key="1" type="primary" onClick={onSave}>
             {useTranslate('buttons.save')}
           </Button>,
