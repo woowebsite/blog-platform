@@ -22,7 +22,7 @@ const ManagementMembers = (props) => {
         extra={[
           <Button key="3">Operation</Button>,
           <Button key="2">Operation</Button>,
-          <RedirectButton key="1" type="primary" url={'/admin/users/new'}>
+          <RedirectButton key="1" type="primary" url={'/users/new'}>
             {t('buttons.create')}
           </RedirectButton>,
         ]}
