@@ -3,7 +3,7 @@ import { Layout, Button, PageHeader } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
-import ProductBaseTable from 'features/ProductBaseTable';
+import PageTable from '~/features/page/PageTable';
 import RedirectButton from '~/components/RedirectButton';
 
 // graphql
@@ -28,7 +28,7 @@ const ManagementPages = (props) => {
         ]}
       />
       <Content>
-        <ProductBaseTable />
+        <PageTable />
       </Content>
     </>
   );

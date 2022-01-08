@@ -9,17 +9,16 @@ import FilterForm from './FilterForm';
 
 import { columns } from './columns';
 import productBaseService from 'services/productBaseService';
-import usersService from 'services/userService';
 
-const PageTable = props => {
+const PageTable = (props) => {
   // DEFINES
   const tableRef = React.useRef(null);
   const { formatMessage } = useIntl();
-  const t = id => formatMessage({ id });
+  const t = (id) => formatMessage({ id });
 
   // RENDER
-  const renderFilter = props => <FilterForm {...props} />;
-  const renderTable = props => (
+  const renderFilter = (props) => <FilterForm {...props} />;
+  const renderTable = (props) => (
     <TableQuickEdit
       {...props}
       ref={tableRef}
@@ -28,7 +27,7 @@ const PageTable = props => {
       quickForm={(record, mutate) => (
         <QuickForm
           values={record}
-          onSave={values =>
+          onSave={(values) =>
             mutate({
               variables: { user: values },
             })
@@ -48,8 +47,8 @@ const PageTable = props => {
         modelName="ProductBase"
         pluralName="ProductBases"
         query={productBaseService.getAll}
-        filterRender={props => renderFilter(props)}
-        tableRender={props => renderTable(props)}
+        filterRender={(props) => renderFilter(props)}
+        tableRender={(props) => renderTable(props)}
       />
     </>
   );
