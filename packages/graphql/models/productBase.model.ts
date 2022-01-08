@@ -4,16 +4,12 @@ import {
   Model,
   BelongsTo,
   ForeignKey,
-  AllowNull,
   BelongsToMany,
 } from 'sequelize-typescript';
 import { User } from './user.model';
 import { Category } from './category.model';
-import { Tag } from './tag.model';
-import { Provider } from './provider.model';
 import { Image } from './image.model';
 import { ProductBaseImage } from './productbaseimage.model';
-import { ProductBaseTag } from './productBaseTag.model';
 
 @Table({ timestamps: true })
 export class ProductBase extends Model<ProductBase> {
@@ -28,7 +24,7 @@ export class ProductBase extends Model<ProductBase> {
 
   @Column
   status: string;
- 
+
   @Column
   primaryImageUrl: string;
 
@@ -38,22 +34,14 @@ export class ProductBase extends Model<ProductBase> {
   @Column
   publishDate: Date;
 
+  @Column
+  type: string;
+
   // Reference ================================
-  // tags
-  @BelongsToMany(() => ProductBaseTag, () => Tag)
-  tags: ProductBaseTag[];
 
   // images
   @BelongsToMany(() => ProductBaseImage, () => Image)
   images: ProductBaseImage[];
-
-  // primary image
-  // @ForeignKey(() => Image)
-  // @Column
-  // primaryImageId: number;
-
-  // @BelongsTo(() => Image)
-  // primaryImage: Image;
 
   // category
   @ForeignKey(() => Category)
@@ -62,14 +50,6 @@ export class ProductBase extends Model<ProductBase> {
 
   @BelongsTo(() => Category)
   category: Category;
-
-  // provider
-  @ForeignKey(() => Provider)
-  @Column
-  providerId: number;
-
-  @BelongsTo(() => Provider)
-  provider: Provider;
 
   // user
   @ForeignKey(() => User)

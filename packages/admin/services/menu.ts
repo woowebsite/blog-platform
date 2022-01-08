@@ -40,7 +40,7 @@ export default function getMenuData() {
     {
       title: 'menu.users.title',
       key: 'users',
-      icon: 'Calendar',
+      icon: 'UserDouble',
       roles: [RoleType.SysAdmin],
       count: 4,
       position: 'left',
@@ -106,6 +106,30 @@ export default function getMenuData() {
         },
       ],
     },
+    {
+      title: 'menu.pages.title',
+      key: 'page',
+      icon: 'Photo',
+      roles: [RoleType.SysAdmin],
+      count: 4,
+      position: 'left',
+      children: [
+        {
+          title: 'menu.pages.allPage',
+          key: 'allPage',
+          url: '/pages',
+          visible: true,
+          roles: [RoleType.SysAdmin],
+        },
+        {
+          title: 'menu.pages.createPage',
+          key: 'createPage',
+          url: '/pages/new',
+          visible: true,
+          roles: [RoleType.SysAdmin],
+        },
+      ],
+    },
   ];
 }
 
@@ -113,7 +137,6 @@ export const topMenu = [
   {
     title: 'topbar.report',
     key: 'report',
-    icon: 'fe fe-home',
     url: '/report',
     position: 'top',
     roles: [RoleType.SysAdmin],

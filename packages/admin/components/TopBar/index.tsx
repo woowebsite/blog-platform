@@ -5,6 +5,7 @@ import UserProfile from './UserProfile';
 
 import style from './style.module.scss';
 import { topMenu } from '~/services/menu';
+React.useLayoutEffect = React.useEffect;
 
 function TopBar(props) {
   return (
@@ -19,7 +20,7 @@ function TopBar(props) {
 
       {/* Right */}
       <div className={style['user-profile']}>
-          <UserProfile />
+        <UserProfile />
       </div>
     </div>
   );

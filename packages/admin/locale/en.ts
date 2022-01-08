@@ -1,3 +1,5 @@
+import routers from '~/constants/routers';
+
 export const en = {
   common: {
     topBar: {
@@ -5,6 +7,7 @@ export const en = {
         profile: 'Basic information',
         logout: 'Log out',
       },
+      report: 'Report',
     },
     menu: {
       settings: {
@@ -24,12 +27,28 @@ export const en = {
         allProductBase: 'All Product bases',
         createProductBase: 'Create product base',
       },
+      pages: {
+        title: 'Pages',
+        allPage: 'All pages',
+        createPage: 'Create page',
+      },
     },
     topbar: {
       report: 'Report',
     },
     validator: {
       required: 'Please input {field}',
+    },
+    notification: {
+      success: {
+        message: 'Successfully',
+        save: 'Saved successfully',
+        sent: 'Sent successfully',
+        delete: 'Deleted successfully',
+      },
+      error: {
+        message: 'Error',
+      },
     },
     messages: {
       changePassword: {
@@ -47,6 +66,10 @@ export const en = {
       filter: 'Filter',
       create: 'Create',
       upload: 'Upload',
+    },
+    deleteModal: {
+      title: 'Delete',
+      content: 'Do you want to delete?',
     },
     userTable: {
       columns: {
@@ -85,6 +108,15 @@ export const en = {
         thumbnails: 'Thumbnails',
         categories: 'Categories',
         tags: 'Tags',
+      },
+    },
+    page: {
+      fields: {
+        id: 'Id',
+        title: 'Title',
+        description: 'Description',
+        thumbnails: 'Thumbnails',
+        publishDate: 'Publish date',
       },
     },
     userCreateform: {
@@ -133,7 +165,7 @@ export const en = {
       },
     },
   },
-  '/admin/users': {
+  '/users': {
     title: 'All users',
     subTitle: 'This is subtitle',
     pageHeader: {
@@ -142,7 +174,7 @@ export const en = {
       },
     },
   },
-  '/admin/productbases': {
+  '/productbases': {
     title: 'Product Bases',
     subTitle: 'This is subtitle',
     pageHeader: {
@@ -151,10 +183,30 @@ export const en = {
       },
     },
   },
-  '/admin/users/new': {
+  '/users/new': {
     title: 'Create an user',
   },
-  '/admin/users/[id]': {
+  [routers.pages.all]: {
+    title: 'All pages',
+  },
+  [routers.pages.create]: {
+    title: 'Create a page',
+    pageHeader: {
+      buttons: {
+        allPage: 'All page',
+      },
+    },
+  },
+  '/pages/[id]': {
+    title: 'Update a page',
+    subTitle: 'Update a page after create',
+    pageHeader: {
+      buttons: {
+        allPage: 'All page',
+      },
+    },
+  },
+  '/users/[id]': {
     title: 'Update user',
     pageHeader: {
       buttons: {

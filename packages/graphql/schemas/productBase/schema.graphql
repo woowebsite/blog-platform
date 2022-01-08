@@ -1,21 +1,28 @@
 type ProductBase {
   id: Int
   title: String
-  user: User
-}
-
-input ProductBaseWhere {
-  user_id: Int
-  id: Int
+  description: String
+  publishDate: Date
   status: String
+  type: String
+  user_id: Int
+  user: User
 }
 
 input ProductBaseInput {
   id: Int
   title: String
   description: String
+  type: String
   user_id: Int
-  taxonomies: [Int]
+  publishDate: Date
+  status: String
+}
+
+input ProductBaseWhere {
+  user_id: Int
+  id: Int
+  status: String
 }
 
 type ProductBasesPaged {
@@ -33,6 +40,10 @@ type Query {
 }
 
 type Mutation {
-  upsertProductBase(data: ProductBaseInput): ProductBase
-  deleteProductBase(id: Int): Int
+  upsertProductBase(
+    data: ProductBaseInput
+    metadata: [ProductBaseMetaInput]
+    taxonomies: [Int]
+  ): ProductBase
+  deleteProductBase(id: Int): Boolean
 }

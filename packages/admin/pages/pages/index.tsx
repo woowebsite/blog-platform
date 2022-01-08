@@ -3,7 +3,7 @@ import { Layout, Button, PageHeader } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
-import ProductBaseTable from 'features/ProductBaseTable';
+import PageTable from '~/features/page/PageTable';
 import RedirectButton from '~/components/RedirectButton';
 
 // graphql
@@ -11,31 +11,27 @@ import { withApollo } from 'apollo/apollo';
 
 const { Content } = Layout;
 
-const ManagementMembers = (props) => {
+const ManagementPages = (props) => {
   const { messages, t } = props;
   return (
     <>
       <PageHeader
-        className="mb-4 pl-0 pr-0"
+        className='mb-4 pl-0 pr-0'
         title={messages.title}
         subTitle={messages.subTitle}
         extra={[
-          <Button key="3">Operation</Button>,
-          <Button key="2">Operation</Button>,
-          <RedirectButton
-            key="1"
-            type="primary"
-            url={'/admin/productbases/new'}
-          >
-            {t('pageHeader.buttons.create')}
+          <Button key='3'>Operation</Button>,
+          <Button key='2'>Operation</Button>,
+          <RedirectButton key='1' type='primary' url={'/pages/new'}>
+            {t('buttons.create')}
           </RedirectButton>,
         ]}
       />
       <Content>
-        <ProductBaseTable />
+        <PageTable />
       </Content>
     </>
   );
 };
 
-export default withAdminLayout(withApollo({ ssr: false })(ManagementMembers));
+export default withAdminLayout(withApollo({ ssr: false })(ManagementPages));

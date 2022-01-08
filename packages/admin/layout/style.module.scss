@@ -1,4 +1,4 @@
-@import "assets/variables.scss";
+@import 'assets/variables.scss';
 
 .menu-left :global {
   background-color: $background-main;
@@ -6,6 +6,9 @@
   .ant-menu-submenu {
     color: $text-level1;
     font-weight: bold;
+    .ant-menu-title-content {
+      margin-left: 0;
+    }
     .ant-menu-submenu-title {
       border-left: 5px solid transparent;
       padding-left: 16px !important;

@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "esnext",
-      "es6",
-      "dom",
-      "esnext.asynciterable"
-    ],
+    "lib": ["esnext", "es6", "dom", "esnext.asynciterable"],
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
@@ -22,10 +17,6 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "**/*.ts"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts"]
 }

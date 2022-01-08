@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu as AntdMenu } from 'antd';
 
 const { Item, SubMenu, Divider } = AntdMenu;
+React.useLayoutEffect = React.useEffect;
 
 const Menu = (props) => {
   const { children } = props;
