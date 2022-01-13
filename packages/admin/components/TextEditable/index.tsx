@@ -35,7 +35,6 @@ const TextEditable: React.FC<TextEditableProps & SelectProps<any>> = ({
   useEffect(() => {
     if (defaultValue !== null) {
       setSelectedValue(defaultValue);
-      onChange?.(defaultValue);
     }
   }, []);
 
