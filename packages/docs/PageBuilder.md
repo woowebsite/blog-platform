@@ -1,7 +1,11 @@
 # Libraries
 - landing.ant.design
 
-# TODO
+# Template Builder with JSON
+- Build list of Element
+- Create `layout.tsx` to render page
+    - Get `componentData` from JSON
+    - Get `template` from JSON
 
 ## Admin build
 Create list of Elements as templates/template/element
