@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { HTMLAttributes } from 'react';
+import cn from 'classnames';
+
 import Menu, { ILink } from './types';
 
 interface MenuProps {
@@ -19,7 +21,7 @@ const MainMenu = ({ menus, wrapper }: MenuProps) => {
     );
   };
   return (
-    <nav className={`mainmenunav ${wrapper?.className}`}>
+    <nav className={cn(`mainmenunav`, wrapper?.className)}>
       <ul className="mainmenu">
         {menus.map((menu) => {
           const { link, subMenu, ...rest } = menu;

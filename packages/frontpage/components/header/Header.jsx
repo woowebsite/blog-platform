@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FiX, FiMenu } from 'react-icons/fi';
 import MainMenu from '~/components/menu/MainMenu';
+import Logo from '~/components/logo/Logo';
 
 class Header extends Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class Header extends Component {
 
   render() {
     var elements = document.querySelectorAll('.has-droupdown > a');
-    const { menu } = this.props.dataSource;
+    const { menu, logo, color = 'default-color' } = this.props.dataSource;
+
     for (var i in elements) {
       if (elements.hasOwnProperty(i)) {
         elements[i].onclick = function () {
@@ -34,33 +36,6 @@ class Header extends Component {
         };
       }
     }
-    const { logo, color = 'default-color' } = this.props.dataSource;
-    let logoUrl;
-    if (logo === 'light') {
-      logoUrl = (
-        <img src="/assets/images/logo/logo-light.png" alt="Digital Agency" />
-      );
-    } else if (logo === 'dark') {
-      logoUrl = (
-        <img src="/assets/images/logo/logo-dark.png" alt="Digital Agency" />
-      );
-    } else if (logo === 'symbol-dark') {
-      logoUrl = (
-        <img
-          src="/assets/images/logo/logo-symbol-dark.png"
-          alt="Digital Agency"
-        />
-      );
-    } else if (logo === 'symbol-light') {
-      logoUrl = (
-        <img
-          src="/assets/images/logo/logo-symbol-light.png"
-          alt="Digital Agency"
-        />
-      );
-    } else {
-      logoUrl = <img src="/assets/images/logo/logo.png" alt="Digital Agency" />;
-    }
 
     return (
       <header
@@ -68,12 +43,9 @@ class Header extends Component {
       >
         <div className="header-wrapper" id="header-wrapper">
           <div className="header-left">
-            <div className="logo">
-              <a href="/">{logoUrl}</a>
-            </div>
+            <Logo {...logo} />
           </div>
           <div className="header-right">
-            {/* Menu here */}
             <MainMenu {...menu} />
             <div className="header-btn">
               <a

@@ -1,80 +1,12 @@
 import component from './Header';
+import menuConfig from 'components/menu/template.config';
+import logoConfig from 'components/logo/template.config';
 
 export default {
   component,
   dataSource: {
-    logo: 'light',
+    menu: menuConfig.dataSource,
+    logo: logoConfig.dataSource,
     color: 'default-color',
-    menu: {
-      wrapper: {
-        className: 'd-lg-block',
-      },
-      menus: [
-        {
-          className: 'has-droupdown',
-          link: {
-            children: 'Home',
-            href: '/#',
-          },
-          subMenu: [
-            { children: 'Main Demo', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-          ],
-        },
-        {
-          className: 'has-droupdown',
-          link: {
-            children: 'Service',
-            href: '/#',
-          },
-          subMenu: [
-            { children: 'Main Demo', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-          ],
-        },
-        {
-          link: {
-            children: 'About',
-            href: '/#',
-          },
-        },
-        {
-          className: 'has-droupdown',
-          link: {
-            children: 'Pages',
-            href: '/#',
-          },
-          subMenu: [
-            { children: 'Main Demo', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-          ],
-        },
-        {
-          className: 'has-droupdown',
-          link: {
-            children: 'Blocks',
-            href: '/#',
-          },
-          subMenu: [
-            { children: 'Main Demo', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-            { children: 'Main Demo Dark', href: '/main-demo' },
-          ],
-        },
-        {
-          link: {
-            children: 'About',
-            href: '/#',
-          },
-        },
-      ],
-    },
   },
 };
