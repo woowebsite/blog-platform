@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FiX, FiMenu } from 'react-icons/fi';
-import Menu from 'components/menu/Menu';
+import MainMenu from '~/components/menu/MainMenu';
 
 class Header extends Component {
   constructor(props) {
@@ -74,7 +74,7 @@ class Header extends Component {
           </div>
           <div className="header-right">
             {/* Menu here */}
-            <Menu {...menu} />
+            <MainMenu {...menu} />
             <div className="header-btn">
               <a
                 className="rn-btn"
