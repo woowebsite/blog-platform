@@ -6,12 +6,15 @@ export default {
     logo: 'light',
     color: 'default-color',
     menu: {
-      dataSource: [
+      wrapper: {
+        className: 'd-lg-block',
+      },
+      menus: [
         {
           className: 'has-droupdown',
           link: {
             children: 'Home',
-            href: '#',
+            href: '/#',
           },
           subMenu: [
             { children: 'Main Demo', href: '/main-demo' },
@@ -24,7 +27,7 @@ export default {
           className: 'has-droupdown',
           link: {
             children: 'Service',
-            href: '#',
+            href: '/#',
           },
           subMenu: [
             { children: 'Main Demo', href: '/main-demo' },
@@ -36,14 +39,14 @@ export default {
         {
           link: {
             children: 'About',
-            href: '#',
+            href: '/#',
           },
         },
         {
           className: 'has-droupdown',
           link: {
             children: 'Pages',
-            href: '#',
+            href: '/#',
           },
           subMenu: [
             { children: 'Main Demo', href: '/main-demo' },
@@ -56,7 +59,7 @@ export default {
           className: 'has-droupdown',
           link: {
             children: 'Blocks',
-            href: '#',
+            href: '/#',
           },
           subMenu: [
             { children: 'Main Demo', href: '/main-demo' },
@@ -68,7 +71,7 @@ export default {
         {
           link: {
             children: 'About',
-            href: '#',
+            href: '/#',
           },
         },
       ],

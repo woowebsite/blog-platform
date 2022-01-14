@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import { HTMLAttributes } from 'react';
 import Menu, { ILink } from './types';
 
 interface MenuProps {
-  dataSource: Menu[];
+  menus: Menu[];
+  wrapper?: HTMLAttributes<HTMLElement>;
 }
-const MainMenu = ({ dataSource }: MenuProps) => {
+const MainMenu = ({ menus, wrapper }: MenuProps) => {
   const renderSubMenu = (subMenu: ILink[]) => {
     return (
       <ul className="submenu">
@@ -17,9 +19,9 @@ const MainMenu = ({ dataSource }: MenuProps) => {
     );
   };
   return (
-    <nav className="mainmenunav d-lg-block">
+    <nav className={`mainmenunav ${wrapper?.className}`}>
       <ul className="mainmenu">
-        {dataSource.map((menu) => {
+        {menus.map((menu) => {
           const { link, subMenu, ...rest } = menu;
           return (
             <li {...rest}>

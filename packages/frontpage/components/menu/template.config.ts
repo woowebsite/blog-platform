@@ -1,71 +1,76 @@
-import component from './Menu';
+import component from './MainMenu';
 
 export default {
   component,
-  dataSource: [
-    {
-      className: 'has-droupdown',
-      link: {
-        children: 'Home',
-        href: '/#',
-      },
-      subMenu: [
-        { children: 'Main Demo', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-      ],
+  dataSource: {
+    wrapper: {
+      className: 'd-lg-block',
     },
-    {
-      className: 'has-droupdown',
-      link: {
-        children: 'Service',
-        href: '/#',
+    menus: [
+      {
+        className: 'has-droupdown',
+        link: {
+          children: 'Home',
+          href: '/#',
+        },
+        subMenu: [
+          { children: 'Main Demo', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+        ],
       },
-      subMenu: [
-        { children: 'Main Demo', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-      ],
-    },
-    {
-      link: {
-        children: 'About',
-        href: '/#',
+      {
+        className: 'has-droupdown',
+        link: {
+          children: 'Service',
+          href: '/#',
+        },
+        subMenu: [
+          { children: 'Main Demo', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+        ],
       },
-    },
-    {
-      className: 'has-droupdown',
-      link: {
-        children: 'Pages',
-        href: '/#',
+      {
+        link: {
+          children: 'About',
+          href: '/#',
+        },
       },
-      subMenu: [
-        { children: 'Main Demo', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-      ],
-    },
-    {
-      className: 'has-droupdown',
-      link: {
-        children: 'Blocks',
-        href: '/#',
+      {
+        className: 'has-droupdown',
+        link: {
+          children: 'Pages',
+          href: '/#',
+        },
+        subMenu: [
+          { children: 'Main Demo', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+        ],
       },
-      subMenu: [
-        { children: 'Main Demo', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-        { children: 'Main Demo Dark', href: '/main-demo' },
-      ],
-    },
-    {
-      link: {
-        children: 'About',
-        href: '/#',
+      {
+        className: 'has-droupdown',
+        link: {
+          children: 'Blocks',
+          href: '/#',
+        },
+        subMenu: [
+          { children: 'Main Demo', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+          { children: 'Main Demo Dark', href: '/main-demo' },
+        ],
       },
-    },
-  ],
+      {
+        link: {
+          children: 'About',
+          href: '/#',
+        },
+      },
+    ],
+  },
 };
