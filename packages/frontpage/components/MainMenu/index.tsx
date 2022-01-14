@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, useEffect } from 'react';
 import cn from 'classnames';
 
 import Menu, { ILink } from './types';
@@ -20,6 +20,22 @@ const MainMenu = ({ menus, wrapper }: MenuProps) => {
       </ul>
     );
   };
+
+  useEffect(() => {
+    var elements = document.querySelectorAll('.has-droupdown > a');
+
+    for (var i in elements) {
+      if (elements.hasOwnProperty(i)) {
+        elements[i].addEventListener('click', function (e: any) {
+          e.preventDefault();
+          this.parentElement
+            ?.querySelector('.submenu')
+            ?.classList.toggle('active');
+          this.classList.toggle('open');
+        });
+      }
+    }
+  }, []);
 
   return (
     <nav className={cn(`mainmenunav`, wrapper?.className)}>
