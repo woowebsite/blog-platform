@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
-import { FiX } from 'react-icons/fi';
-import MainMenu from '~/components/MainMenu';
 import Logo from '~/components/Logo';
+import MainMenu from '~/components/MainMenu';
 import AnchorButton from 'components/AnchorButton';
 import HumbergerMenu from 'components/HumbergerMenu';
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.CLoseMenuTrigger = this.CLoseMenuTrigger.bind(this);
-    //  this.subMetuTrigger = this.subMetuTrigger.bind(this);
     window.addEventListener('load', function () {
       console.log('All assets are loaded');
     });
-  }
-
-  CLoseMenuTrigger() {
-    document.querySelector('.header-wrapper').classList.remove('menu-open');
   }
 
   render() {
@@ -41,11 +34,6 @@ class Header extends Component {
               <AnchorButton {...button} />
             </div>
             <HumbergerMenu />
-            <div className="close-menu d-block d-lg-none">
-              <span onClick={this.CLoseMenuTrigger} className="closeTrigger">
-                <FiX />
-              </span>
-            </div>
           </div>
         </div>
       </header>
