@@ -20,6 +20,7 @@ const MainMenu = ({ menus, wrapper }: MenuProps) => {
       </ul>
     );
   };
+
   return (
     <nav className={cn(`mainmenunav`, wrapper?.className)}>
       <ul className="mainmenu">
