@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FiX, FiMenu } from 'react-icons/fi';
 import MainMenu from '~/components/menu/MainMenu';
 import Logo from '~/components/logo/Logo';
+import AnchorButton from 'components/AnchorButton';
 
 class Header extends Component {
   constructor(props) {
@@ -24,7 +25,12 @@ class Header extends Component {
 
   render() {
     var elements = document.querySelectorAll('.has-droupdown > a');
-    const { menu, logo, color = 'default-color' } = this.props.dataSource;
+    const {
+      menu,
+      logo,
+      button,
+      color = 'default-color',
+    } = this.props.dataSource;
 
     for (var i in elements) {
       if (elements.hasOwnProperty(i)) {
@@ -48,12 +54,7 @@ class Header extends Component {
           <div className="header-right">
             <MainMenu {...menu} />
             <div className="header-btn">
-              <a
-                className="rn-btn"
-                href="https://themeforest.net/checkout/from_item/25457315?license=regular"
-              >
-                <span>buy now</span>
-              </a>
+              <AnchorButton {...button} />
             </div>
             {/* Start Humberger Menu  */}
             <div className="humberger-menu d-block d-lg-none pl--20">
