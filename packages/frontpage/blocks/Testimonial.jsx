@@ -1,10 +1,10 @@
 import React from 'react'
-import PageHelmet from "../components/common/Helmet";
-import Breadcrumb from "../elements/common/Breadcrumb";
+import PageHelmet from "components/common/Helmet";
+import Breadcrumb from "elements/common/Breadcrumb";
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import Header from "components/header/Header";
+import Footer from "components/footer/Footer";
 import TestimonialOne from "./testimonial/TestimonialOne";
 import TestimonialTwo from "./testimonial/TestimonialTwo";
 

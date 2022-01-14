@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react';
 import { FiChevronUp } from "react-icons/fi";
-import PageHelmet from "../components/common/Helmet";
-import Breadcrumb from "../elements/common/Breadcrumb";
+import PageHelmet from "components/common/Helmet";
+import Breadcrumb from "elements/common/Breadcrumb";
 import ScrollToTop from 'react-scroll-up';
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import Header from "components/header/Header";
+import Footer from "components/footer/Footer";
 
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;

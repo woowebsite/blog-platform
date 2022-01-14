@@ -1,12 +1,12 @@
 import React from 'react'
-import PageHelmet from "../components/common/Helmet";
-import Breadcrumb from "../elements/common/Breadcrumb";
+import PageHelmet from "components/common/Helmet";
+import Breadcrumb from "elements/common/Breadcrumb";
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Header from "../components/header/Header";
+import Header from "components/header/Header";
 import ProgressOne from "./progressbar/ProgressOne";
 import ProgressTwo from "./progressbar/ProgressTwo";
-import Footer from "../components/footer/Footer";
+import Footer from "components/footer/Footer";
 
 
 const ProgressBar = () => {

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import PageHelmet from "../components/common/Helmet";
-import Breadcrumb from "../elements/common/Breadcrumb";
+import PageHelmet from "components/common/Helmet";
+import Breadcrumb from "elements/common/Breadcrumb";
 import { FiCast , FiLayers , FiUsers , FiMonitor ,FiChevronUp } from "react-icons/fi";
 import ScrollToTop from 'react-scroll-up';
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import Header from "components/header/Header";
+import Footer from "components/footer/Footer";
 
 
 const ServiceList = [

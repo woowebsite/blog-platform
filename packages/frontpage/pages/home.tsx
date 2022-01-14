@@ -1,11 +1,11 @@
 import React, { Component , Fragment } from "react";
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import PortfolioMasonry from "../elements/portfolio/PortfolioMasonry";
-import Header from "../components/header/Header";
-import FooterTwo from "../components/footer/FooterTwo";
-import Brand from "../elements/Brand";
-import Helmet from "../components/common/Helmet";
+import PortfolioMasonry from "elements/portfolio/PortfolioMasonry";
+import Header from "components/header/Header";
+import FooterTwo from "components/footer/FooterTwo";
+import Brand from "elements/Brand";
+import Helmet from "components/common/Helmet";
 
 const SlideList = [
     {

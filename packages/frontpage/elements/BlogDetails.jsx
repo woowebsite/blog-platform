@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import PageHelmet from "../components/common/Helmet";
+import PageHelmet from "components/common/Helmet";
 import ModalVideo from 'react-modal-video';
 import { FiClock , FiUser , FiMessageCircle , FiHeart } from "react-icons/fi";
 import Link from 'next/link';
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import Header from "components/header/Header";
+import Footer from "components/footer/Footer";
 
 class BlogDetails extends Component{
     constructor () {

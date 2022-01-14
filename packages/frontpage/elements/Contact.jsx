@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import PageHelmet from "../components/common/Helmet";
+import PageHelmet from "components/common/Helmet";
 import { FiHeadphones , FiMail , FiMapPin } from "react-icons/fi";
 import GoogleMapReact from 'google-map-react';
-import ContactTwo from "../elements/contact/ContactTwo";
-import BrandTwo from "../elements/BrandTwo";
+import ContactTwo from "elements/contact/ContactTwo";
+import BrandTwo from "elements/BrandTwo";
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import Header from "components/header/Header";
+import Footer from "components/footer/Footer";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 

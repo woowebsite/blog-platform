@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import Header from "components/header/Header";
+import Footer from "components/footer/Footer";
 
-import SliderOne from "../components/slider/SliderOne";
-import ServiceTwo from "../elements/service/ServiceTwo";
-import CounterOne from "../elements/counters/CounterOne";
-import Testimonial from "../elements/Testimonial";
-import About from "../components/HomeLayout/homeOne/About";
-import Portfolio from "../components/HomeLayout/homeOne/Portfolio";
-import BlogContent from "../elements/blog/BlogContent";
-import BrandTwo from "../elements/BrandTwo";
-import Helmet from "../components/common/Helmet";
+import SliderOne from "components/slider/SliderOne";
+import ServiceTwo from "elements/service/ServiceTwo";
+import CounterOne from "elements/counters/CounterOne";
+import Testimonial from "elements/Testimonial";
+import About from "components/HomeLayout/homeOne/About";
+import Portfolio from "components/HomeLayout/homeOne/Portfolio";
+import BlogContent from "elements/blog/BlogContent";
+import BrandTwo from "elements/BrandTwo";
+import Helmet from "components/common/Helmet";
 
 class MainDemo extends Component{
     render(){

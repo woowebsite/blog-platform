@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import PageHelmet from "../components/common/Helmet";
-import Breadcrumb from "../elements/common/Breadcrumb";
-import Pagination from "../elements/common/Pagination";
-import BlogList from "../elements/blog/BlogList";
+import PageHelmet from "components/common/Helmet";
+import Breadcrumb from "elements/common/Breadcrumb";
+import Pagination from "elements/common/Pagination";
+import BlogList from "elements/blog/BlogList";
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import Header from "components/header/Header";
+import Footer from "components/footer/Footer";
 
 class Blog extends Component{
     render(){

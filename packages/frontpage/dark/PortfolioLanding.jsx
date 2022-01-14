@@ -1,15 +1,15 @@
 import React from 'react';
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Helmet from "../components/common/Helmet";
+import Helmet from "components/common/Helmet";
 import TextLoop from "react-text-loop";
-import HeaderThree from "../components/header/HeaderThree";
-import FooterTwo from "../components/footer/FooterTwo";
-import TabTwo from "../elements/tab/TabTwo";
-import ContactThree from "../elements/contact/ContactThree";
-import PortfolioList from "../elements/portfolio/PortfolioList";
-import ServiceList from "../elements/service/ServiceList";
-import BlogContent from "../elements/blog/BlogContent";
+import HeaderThree from "components/header/HeaderThree";
+import FooterTwo from "components/footer/FooterTwo";
+import TabTwo from "elements/tab/TabTwo";
+import ContactThree from "elements/contact/ContactThree";
+import PortfolioList from "elements/portfolio/PortfolioList";
+import ServiceList from "elements/service/ServiceList";
+import BlogContent from "elements/blog/BlogContent";
 
 const SlideList = [
     {

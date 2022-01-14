@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ServiceOne from "../../elements/service/ServiceOne";
+import ServiceOne from "../elements/service/ServiceOne";
 
 class SliderOne extends Component {
   render() {
