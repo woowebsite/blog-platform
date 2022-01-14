@@ -1,4 +1,4 @@
-import component from './MainMenu';
+import component from './index';
 
 export default {
   component,

@@ -1,4 +1,4 @@
-import component from './Logo';
+import component from './index';
 
 export default {
   component,

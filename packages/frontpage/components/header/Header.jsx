@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FiX, FiMenu } from 'react-icons/fi';
-import MainMenu from '~/components/menu/MainMenu';
-import Logo from '~/components/logo/Logo';
+import MainMenu from '~/components/MainMenu';
+import Logo from '~/components/Logo';
 import AnchorButton from 'components/AnchorButton';
 
 class Header extends Component {
