@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from 'react-icons/fi';
 import PortfolioMasonry from 'elements/portfolio/PortfolioMasonry';
-// import Header from "components/header/Header";
 import FooterTwo from 'components/footer/FooterTwo';
 import Brand from 'elements/Brand';
 import Helmet from 'components/common/Helmet';
@@ -11,26 +10,18 @@ import Helmet from 'components/common/Helmet';
 import layout from './layout';
 import components from 'components/components.config';
 
-const SlideList = [
-  {
-    textPosition: 'text-center',
-    category: '',
-    title: 'Minimal',
-    description:
-      'There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.',
-    buttonText: 'Contact Us',
-    buttonLink: '/contact',
-  },
-];
 class HomePortfolio extends Component {
   render() {
-    const componentName = layout[0];
-    const componentData = components[componentName];
-    const dataSource = componentData.dataSource;
-    const HeaderComponent = React.createElement(componentData.component, {
-      key: componentName,
-      id: componentName,
-      dataSource,
+    // render copmonent from layout
+    const elements = layout.map((componentName) => {
+      const componentData = components[componentName];
+      const dataSource = componentData.dataSource;
+      const Component = React.createElement(componentData.component, {
+        key: componentName,
+        id: componentName,
+        dataSource,
+      });
+      return Component;
     });
 
     if (typeof window === 'undefined') return 'Loading...';
@@ -38,54 +29,7 @@ class HomePortfolio extends Component {
       <Fragment>
         <Helmet pageTitle="Home Portfolio" />
 
-        {/* Start Header Area  */}
-        {HeaderComponent}
-        {/* End Header Area  */}
-        {/* Start Slider Area   */}
-        <div className="slider-wrapper">
-          {/* Start Single Slide */}
-          {SlideList.map((value, index) => (
-            <div
-              className="slide slide-style-2 fullscreen d-flex align-items-center justify-content-center bg_image bg_image--24"
-              key={index}
-              data-black-overlay="6"
-            >
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-12">
-                    <div className={`inner ${value.textPosition}`}>
-                      {value.category ? <span>{value.category}</span> : ''}
-                      {value.title ? (
-                        <h1 className="title theme-gradient">{value.title}</h1>
-                      ) : (
-                        ''
-                      )}
-                      {value.description ? (
-                        <p className="description">{value.description}</p>
-                      ) : (
-                        ''
-                      )}
-                      {value.buttonText ? (
-                        <div className="slide-btn">
-                          <a
-                            className="rn-button-style--2 btn-primary-color"
-                            href={`${value.buttonLink}`}
-                          >
-                            {value.buttonText}
-                          </a>
-                        </div>
-                      ) : (
-                        ''
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-          {/* End Single Slide */}
-        </div>
-        {/* End Slider Area   */}
+        {elements}
 
         {/* Start portfolio Area  */}
         <div className="rn-portfolio-area bg_color--1 ptb--120">
