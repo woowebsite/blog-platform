@@ -1,1 +1,1 @@
-export default ['Header', 'SliderTwo'];
+export default ['Header', 'SliderTwo', 'Content1'];

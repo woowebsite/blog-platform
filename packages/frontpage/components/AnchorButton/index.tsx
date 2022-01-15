@@ -1,10 +1,17 @@
-interface AnchorButtonProps {
+import { AnchorHTMLAttributes } from 'react';
+
+interface AnchorButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   text: string;
 }
-const AnchorButton = ({ href, text }: AnchorButtonProps) => {
+const AnchorButton = ({
+  href,
+  text,
+  className = 'rn-btn',
+  ...rest
+}: AnchorButtonProps) => {
   return (
-    <a className="rn-btn" href={href}>
+    <a className={className} href={href} {...rest}>
       <span>{text}</span>
     </a>
   );
