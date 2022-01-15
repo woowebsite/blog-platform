@@ -13,12 +13,7 @@ class Header extends Component {
   }
 
   render() {
-    const {
-      menu,
-      logo,
-      button,
-      color = 'default-color',
-    } = this.props.dataSource;
+    const { menu, logo, button, color = 'default-color' } = this.props;
 
     return (
       <header

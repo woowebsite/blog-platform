@@ -1,20 +1,16 @@
 import { HTMLAttributes } from 'react';
 import { renderChildren, renderComponent } from '~/lib/utils';
 
-interface ContentDataSource {
+interface ContentProps extends HTMLAttributes<HTMLElement> {
   title?: string;
   description?: string;
   children: any[];
 }
-
-interface ContentProps extends HTMLAttributes<HTMLElement> {
-  dataSource: ContentDataSource;
-}
-const Content = ({ dataSource }: ContentProps) => {
-  const { title, description, children } = dataSource;
+const Content = (props: ContentProps) => {
+  const { title, description, children, className } = props;
 
   return (
-    <div className="rn-portfolio-area bg_color--1 ptb--120">
+    <div className={className}>
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

@@ -10,6 +10,7 @@ const components: KeyPair = {
     component: Content,
     dataSource: {
       title: 'Our Project',
+      className: 'rn-portfolio-area bg_color--1 ptb--120',
       description:
         'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.',
       children: [
@@ -53,10 +54,44 @@ const components: KeyPair = {
                             dataSource: {
                               text: 'View More Project',
                               href: '/portfolio',
-                              className: 'rn-button-style--2 btn-solid'
+                              className: 'rn-button-style--2 btn-solid',
                             },
                           },
                         ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+  Content2: {
+    component: Content,
+    dataSource: {
+      title: 'Our Clients',
+      className: 'rn-brand-area ptb--120 bg_color--5',
+      description:
+        'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.',
+      children: [
+        {
+          name: 'wrapper-clients',
+          componentName: 'div',
+          dataSource: {
+            className: 'row',
+            children: [
+              {
+                componentName: 'div',
+                dataSource: {
+                  className: 'col-lg-12 mt--40',
+                  children: [
+                    {
+                      componentName: 'Brand',
+                      dataSource: {
+                        branstyle: 'branstyle--2',
                       },
                     },
                   ],

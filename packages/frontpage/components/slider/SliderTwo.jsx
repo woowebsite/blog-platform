@@ -2,8 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { slideSlick } from './script';
 
-const SliderTwo = ({ dataSource }) => {
-  const { slides } = dataSource;
+const SliderTwo = ({ slides }) => {
   return (
     <div className="slider-activation">
       <Slider className="rn-slick-dot dot-light" {...slideSlick}>

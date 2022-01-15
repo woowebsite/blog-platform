@@ -6,10 +6,8 @@ import FooterTwo from 'components/footer/FooterTwo';
 import Brand from 'elements/Brand';
 import Helmet from 'components/common/Helmet';
 
-// configuration
+// should be save these configurations into database
 import layout from './layout';
-
-// components configuration should be save into database
 import components from './components.config';
 
 const HomePortfolio = () => {
@@ -21,7 +19,7 @@ const HomePortfolio = () => {
       const Component = React.createElement(componentData.component, {
         key: componentName,
         id: componentName,
-        dataSource,
+        ...dataSource,
       });
       return Component;
     });
@@ -34,29 +32,6 @@ const HomePortfolio = () => {
       <Helmet pageTitle="Home Portfolio" />
 
       {renderComponent()}
-
-      {/* Start Brand Area */}
-      <div className="rn-brand-area ptb--120 bg_color--5">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="section-title text-center service-style--3 mb--30">
-                <h2 className="title">Our Clients</h2>
-                <p>
-                  There are many variations of passages of Lorem Ipsum
-                  available, but the majority have suffered alteration.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12 mt--40">
-              <Brand branstyle="branstyle--2" />
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* End Brand Area */}
 
       {/* Start Footer Area  */}
       <FooterTwo />
