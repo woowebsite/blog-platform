@@ -12,6 +12,12 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": "./",
+    "paths": {
+      "~/*": [
+        "./*"
+      ]
+    },
     "allowJs": true,
     "noEmit": true,
     "moduleResolution": "node",
@@ -25,6 +31,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
   ]
 }

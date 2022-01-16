@@ -1,3 +1,5 @@
+
+
 @tailwind base;
 
 /* Write your own custom base styles here */
@@ -13,3 +15,6 @@
 /* Stop purging. */
 
 /* Your own custom utilities */
+img, svg, video, canvas, audio, iframe, embed, object {
+    display: initial;
+}

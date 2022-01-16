@@ -6,7 +6,7 @@
   "author": "woowebsite",
   "license": "ISC",
   "scripts": {
-    "build": "yarn workspace @monorepo/admin run build",
+    "build": "yarn workspace @monorepo/admin run build && @monorepo/frontend run build",
     "start": "yarn workspace @monorepo/server run start",
     "dev": "export $(cat .env | xargs) && yarn workspace @monorepo/server run dev"
   },
@@ -21,6 +21,6 @@
     "node": "14.x"
   },
   "dependencies": {
-    "next": "^10.0.6"
+    "next": ">=11.1.3"
   }
 }
