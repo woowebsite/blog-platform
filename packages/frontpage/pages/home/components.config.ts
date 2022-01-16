@@ -2,6 +2,8 @@ import KeyPair from '~/types/KeyPair';
 import Header from 'components/header/template.config';
 import Content from 'components/Content';
 import SliderTwo from 'components/slider/template.config';
+import FooterTwo from '~/components/footer/FooterTwo';
+import ScrollTop from '~/components/ScrollTop';
 
 const components: KeyPair = {
   Header,
@@ -102,6 +104,12 @@ const components: KeyPair = {
         },
       ],
     },
+  },
+  Footer: {
+    component: FooterTwo,
+  },
+  ScrollTop: {
+    component: ScrollTop,
   },
 };
 export default components;

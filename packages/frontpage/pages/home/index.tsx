@@ -33,16 +33,7 @@ const HomePortfolio = () => {
 
       {renderComponent()}
 
-      {/* Start Footer Area  */}
-      <FooterTwo />
-      {/* End Footer Area  */}
-      {/* Start Back To Top */}
-      <div className="backto-top">
-        <ScrollToTop showUnder={160}>
-          <FiChevronUp />
-        </ScrollToTop>
-      </div>
-      {/* End Back To Top */}
+     
     </Fragment>
   );
 };
