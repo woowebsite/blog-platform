@@ -4,7 +4,7 @@ import logoConfig from '~/components/Logo/template.config';
 import anchorButtonConfig from '~/components/AnchorButton/template.config';
 
 export default {
-  component,
+  componentName: 'Header',
   dataSource: {
     color: 'default-color',
     menu: menuConfig.dataSource,

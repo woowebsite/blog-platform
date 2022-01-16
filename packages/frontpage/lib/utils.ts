@@ -7,6 +7,10 @@ interface ComponentConfig {
   name?: string;
   dataSource: any;
 }
+
+export const getComponent = (name: string) => {
+  return components[name];
+};
 export const renderComponent = (config: ComponentConfig) => {
   const { name, componentName, dataSource } = config;
   const component = components[componentName];

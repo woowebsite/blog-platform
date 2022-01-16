@@ -9,7 +9,7 @@ const components: KeyPair = {
   Header,
   SliderTwo,
   Content1: {
-    component: Content,
+    componentName: 'Content',
     dataSource: {
       title: 'Our Project',
       className: 'rn-portfolio-area bg_color--1 ptb--120',
@@ -72,7 +72,7 @@ const components: KeyPair = {
     },
   },
   Content2: {
-    component: Content,
+    componentName: 'Content',
     dataSource: {
       title: 'Our Clients',
       className: 'rn-brand-area ptb--120 bg_color--5',
@@ -106,10 +106,10 @@ const components: KeyPair = {
     },
   },
   Footer: {
-    component: FooterTwo,
+    componentName: 'FooterTwo',
   },
   ScrollTop: {
-    component: ScrollTop,
+    componentName: 'ScrollTop',
   },
 };
 export default components;

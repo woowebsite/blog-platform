@@ -1,7 +1,10 @@
 import KeyPair from '~/types/KeyPair';
-import Header from 'components/header/template.config';
-import SliderTwo from 'components/slider/template.config';
-import AnchorButton from 'components/AnchorButton';
+import Header from './header/Header';
+import SliderTwo from './slider/SliderTwo';
+import AnchorButton from './AnchorButton';
+import FooterTwo from './footer/FooterTwo';
+import ScrollTop from './ScrollTop';
+import Content from './Content';
 import PortfolioMasonry from 'elements/portfolio/PortfolioMasonry';
 import Brand from 'elements/Brand';
 
@@ -10,9 +13,12 @@ const components: KeyPair = {
   Header,
   SliderTwo,
   AnchorButton,
+  ScrollTop,
+  FooterTwo,
+  Content,
 
   // elements
   PortfolioMasonry,
-  Brand
+  Brand,
 };
 export default components;

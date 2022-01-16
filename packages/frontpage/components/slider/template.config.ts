@@ -1,7 +1,7 @@
 import component from './SliderTwo';
 
 export default {
-  component,
+  componentName: 'SliderTwo',
   dataSource: {
     slides: [
       {
