@@ -1,4 +1,4 @@
-@import "variables.scss";
+@import 'variables.scss';
 
 html {
   font-size: 15px;
@@ -31,7 +31,7 @@ html {
   font-size: 14px;
   font-family: SimSun, sans-serif;
   line-height: 1;
-  content: "*";
+  content: '*';
 }
 
 /* Table */
@@ -41,6 +41,20 @@ html {
 
 .ant-table-cell.actions-cell {
   padding-left: 0 !important;
+}
+
+// Drag table
+.row-dragging {
+  background: #fafafa;
+  border: 1px solid #ccc;
+}
+
+.row-dragging td {
+  padding: 16px;
+}
+
+.row-dragging .drag-visible {
+  visibility: visible;
 }
 
 /* FORM */
@@ -89,7 +103,7 @@ html {
   font-size: 14px;
   font-family: SimSun, sans-serif;
   line-height: 1;
-  content: "*";
+  content: '*';
   left: 5px;
   position: relative;
 }

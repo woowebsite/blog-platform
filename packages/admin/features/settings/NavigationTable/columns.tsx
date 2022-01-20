@@ -1,6 +1,8 @@
-import Table, { ColumnsType } from 'antd/lib/table';
-import { Button, Popconfirm } from 'antd';
+import Table from 'antd/lib/table';
+import { Button } from 'antd';
 import Input from '~/components/Input';
+import { MenuOutlined } from '@ant-design/icons';
+import { SortableHandle } from 'react-sortable-hoc';
 
 type EditableTableProps = Parameters<typeof Table>[0];
 export type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>;
@@ -9,13 +11,19 @@ export type EditableColumn = (ColumnTypes[any] & {
   dataIndex: string;
 })[];
 
+const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />);
 export const columns = (t, handleSave, handleRemove): EditableColumn => {
   return [
+    {
+      dataIndex: 'sort',
+      width: 50,
+      className: 'drag-visible',
+      render: () => <DragHandle />,
+    },
     {
       title: t('navigationTable.columns.title'),
       dataIndex: 'termName',
       key: 'termName',
-      width: '25%',
       editable: true,
       render: (text, record) => {
         return <Input value={text} />;
@@ -25,7 +33,6 @@ export const columns = (t, handleSave, handleRemove): EditableColumn => {
       title: t('navigationTable.columns.link'),
       dataIndex: 'description',
       key: 'description',
-      width: '25%',
       editable: true,
       render: (text, record) => {
         return <Input value={text} />;
@@ -34,7 +41,7 @@ export const columns = (t, handleSave, handleRemove): EditableColumn => {
     {
       title: '',
       className: 'actions-cell',
-      width: '15%',
+      width: 200,
       key: 'action',
       sorter: false,
       editable: false,

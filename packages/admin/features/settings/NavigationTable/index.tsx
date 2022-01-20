@@ -10,6 +10,11 @@ import QuickForm from './QuickForm';
 import { columns, ColumnTypes } from './columns';
 import RowStatus from './RowStatus';
 import taxonomyService from 'services/taxonomyService';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import { arrayMoveImmutable } from 'array-move';
+
+const SortableItem = SortableElement((props) => <EditableRow {...props} />);
+const SortableBody = SortableContainer((props) => <tbody {...props} />);
 
 const NavigationTable = (props) => {
   // DEFINES
@@ -33,8 +38,9 @@ const NavigationTable = (props) => {
         termName: '',
         description: '',
       };
-      const dataSource = data.termTaxonomies.rows.map((r) => ({
+      const dataSource = data.termTaxonomies.rows.map((r, index) => ({
         status: RowStatus.GET,
+        index,
         ...r,
       }));
 
@@ -61,6 +67,35 @@ const NavigationTable = (props) => {
     setDataSource([...ds]);
   };
 
+  // sorting
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    if (oldIndex !== newIndex) {
+      const newData = arrayMoveImmutable(
+        [].concat(dataSource),
+        oldIndex,
+        newIndex,
+      ).filter((el) => !!el);
+      console.log('Sorted items: ', newData);
+      setDataSource(newData);
+    }
+  };
+  const DraggableContainer = (props) => (
+    <SortableBody
+      useDragHandle
+      disableAutoscroll
+      helperClass="row-dragging"
+      onSortEnd={onSortEnd}
+      {...props}
+    />
+  );
+
+  const DraggableBodyRow = ({ className, style, ...restProps }) => {
+    const index = dataSource.findIndex(
+      (x) => x.index === restProps['data-row-key'],
+    );
+    return <SortableItem index={index} {...restProps} />;
+  };
+
   // RENDER
   if (loading) return 'Loading...';
 
@@ -70,7 +105,8 @@ const NavigationTable = (props) => {
 
   const components = {
     body: {
-      row: EditableRow,
+      wrapper: DraggableContainer,
+      row: DraggableBodyRow,
       cell: EditableCell,
     },
   };
@@ -93,9 +129,11 @@ const NavigationTable = (props) => {
   return (
     <>
       <Table
-        components={components}
+        pagination={false}
+        dataSource={dataSource}
         columns={tableColumns as ColumnTypes}
-        dataSource={filterDataSource}
+        rowKey="index"
+        components={components}
       />
     </>
   );
@@ -124,7 +162,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
   const form = useContext(EditableContext)!;
 
   useEffect(() => {
-    if (record) form.setFieldsValue({ [dataIndex]: record[dataIndex] });
+    if (record && form) form.setFieldsValue({ [dataIndex]: record[dataIndex] });
   }, []);
 
   const save = async () => {
