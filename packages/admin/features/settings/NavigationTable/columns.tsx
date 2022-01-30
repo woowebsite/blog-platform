@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import Input from '~/components/Input';
 import { MenuOutlined } from '@ant-design/icons';
 import { SortableHandle } from 'react-sortable-hoc';
+import RowStatus from './RowStatus';
 
 type EditableTableProps = Parameters<typeof Table>[0];
 export type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>;
@@ -11,7 +12,9 @@ export type EditableColumn = (ColumnTypes[any] & {
   dataIndex: string;
 })[];
 
-const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />);
+const DragHandle = SortableHandle(() => (
+  <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />
+));
 export const columns = (t, handleSave, handleRemove): EditableColumn => {
   return [
     {
@@ -46,16 +49,20 @@ export const columns = (t, handleSave, handleRemove): EditableColumn => {
       sorter: false,
       editable: false,
       dataIndex: 'action',
-      render: (value, record, index) => (
-        <Button.Group>
-          <Button onClick={() => handleRemove(record)} type="link">
-            {t('buttons.delete')}
-          </Button>
-          <Button onClick={() => handleSave(record)} type="link">
-            {t('buttons.save')}
-          </Button>
-        </Button.Group>
-      ),
+      render: (value, record: any, index) => {
+        if (record.status === RowStatus.CREATE)
+          return (
+            <Button onClick={() => handleSave(record)} type="link">
+              {t('buttons.add')}
+            </Button>
+          );
+        else
+          return (
+            <Button onClick={() => handleRemove(record)} type="link">
+              {t('buttons.delete')}
+            </Button>
+          );
+      },
     },
   ];
 };

@@ -22,7 +22,7 @@ const NavigationTable = (props) => {
   const t = (id) => formatMessage({ id });
   const [dataSource, setDataSource] = useState([]);
   const [upsertTaxonomy] = taxonomyService.upsertTaxonomy();
-  const { data, loading, refetch } = taxonomyService.getAll({
+  const { data, loading } = taxonomyService.getAll({
     variables: { where: { taxonomy: TaxonomyType.MainMenu } },
     notifyOnNetworkStatusChange: true,
   });
@@ -46,15 +46,27 @@ const NavigationTable = (props) => {
 
       setDataSource([...dataSource, newData]);
     }
-  }, [data]);
+  }, [loading]);
 
   // EVENTS
   const handleSave = (data) => {
     upsertTaxonomy({
       variables: {
-        data,
+        data: {
+          description: data.description,
+          id: data.id,
+          order: data.order,
+          taxonomy: data.taxonomy,
+          termName: data.termName,
+        },
       },
     });
+
+    // Update dataSource
+    const index = dataSource.findIndex((x) => x.id === data.id);
+    dataSource[index] = { ...data, status: RowStatus.UPDATE };
+
+    setDataSource([...dataSource]);
   };
 
   const handleRemove = (data) => {
@@ -75,7 +87,6 @@ const NavigationTable = (props) => {
         oldIndex,
         newIndex,
       ).filter((el) => !!el);
-      console.log('Sorted items: ', newData);
       setDataSource(newData);
     }
   };
@@ -93,7 +104,13 @@ const NavigationTable = (props) => {
     const index = dataSource.findIndex(
       (x) => x.index === restProps['data-row-key'],
     );
-    return <SortableItem index={index} {...restProps} />;
+    const latest = index === dataSource.length - 1;
+
+    return latest ? (
+      <EditableRow index={index} {...restProps} />
+    ) : (
+      <SortableItem index={index} {...restProps} />
+    );
   };
 
   // RENDER
@@ -122,7 +139,7 @@ const NavigationTable = (props) => {
         editable: col.editable,
         dataIndex: col.dataIndex,
         title: col.title,
-        handleSave: handleSave,
+        handleSave,
       }),
     };
   });
@@ -130,7 +147,7 @@ const NavigationTable = (props) => {
     <>
       <Table
         pagination={false}
-        dataSource={dataSource}
+        dataSource={filterDataSource}
         columns={tableColumns as ColumnTypes}
         rowKey="index"
         components={components}
@@ -165,11 +182,9 @@ const EditableCell: React.FC<EditableCellProps> = ({
     if (record && form) form.setFieldsValue({ [dataIndex]: record[dataIndex] });
   }, []);
 
-  const save = async () => {
+  const onPressEnter = async () => {
     try {
       const values = await form.validateFields();
-      delete record.status;
-      delete record.__typename;
 
       handleSave({ ...record, ...values });
     } catch (errInfo) {
@@ -191,7 +206,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
           },
         ]}
       >
-        <Input ref={inputRef} onPressEnter={save} />
+        <Input ref={inputRef} onPressEnter={onPressEnter} />
       </Form.Item>
     );
   }

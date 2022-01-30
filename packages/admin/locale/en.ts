@@ -67,6 +67,7 @@ export const en = {
       filter: 'Filter',
       create: 'Create',
       upload: 'Upload',
+      add: 'Add',
     },
     deleteModal: {
       title: 'Delete',
