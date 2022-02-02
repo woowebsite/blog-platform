@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import NProgress from 'nprogress';
 import _ from 'lodash';
-import { Form, FormInstance, Input, Table } from 'antd';
+import { Table } from 'antd';
 
 // components
 import { TaxonomyType } from '~/components/ComboBoxTaxonomy';
-import QuickForm from './QuickForm';
 import { columns, ColumnTypes } from './columns';
 import RowStatus from './RowStatus';
 import taxonomyService from 'services/taxonomyService';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
+import { EditableCell, EditableRow } from './EditableTable';
 
 const SortableItem = SortableElement((props) => <EditableRow {...props} />);
 const SortableBody = SortableContainer((props) => <tbody {...props} />);
@@ -22,7 +22,7 @@ const NavigationTable = (props) => {
   const t = (id) => formatMessage({ id });
   const [dataSource, setDataSource] = useState([]);
   const [upsertTaxonomy] = taxonomyService.upsertTaxonomy();
-  const { data, loading } = taxonomyService.getAll({
+  const { data, loading, refetch } = taxonomyService.getAll({
     variables: { where: { taxonomy: TaxonomyType.MainMenu } },
     notifyOnNetworkStatusChange: true,
   });
@@ -32,7 +32,7 @@ const NavigationTable = (props) => {
   }, [loading]);
 
   useEffect(() => {
-    if (data && data.termTaxonomies.rows) {
+    if (!loading && data && data.termTaxonomies.rows) {
       const newData = {
         status: RowStatus.CREATE,
         termName: '',
@@ -49,6 +49,15 @@ const NavigationTable = (props) => {
   }, [loading]);
 
   // EVENTS
+  const handleAdd = () => {
+    const newData = {
+      status: RowStatus.CREATE,
+      termName: '',
+      description: '',
+    };
+
+    setDataSource([...dataSource, newData]);
+  };
   const handleSave = (data) => {
     upsertTaxonomy({
       variables: {
@@ -56,10 +65,11 @@ const NavigationTable = (props) => {
           description: data.description,
           id: data.id,
           order: data.order,
-          taxonomy: data.taxonomy,
+          taxonomy: TaxonomyType.MainMenu,
           termName: data.termName,
         },
       },
+      onCompleted: refetch
     });
 
     // Update dataSource
@@ -90,6 +100,8 @@ const NavigationTable = (props) => {
       setDataSource(newData);
     }
   };
+
+  // RENDER
   const DraggableContainer = (props) => (
     <SortableBody
       useDragHandle
@@ -113,9 +125,6 @@ const NavigationTable = (props) => {
     );
   };
 
-  // RENDER
-  if (loading) return 'Loading...';
-
   const filterDataSource = dataSource.filter(
     (x) => x.status !== RowStatus.DELETE,
   );
@@ -128,18 +137,18 @@ const NavigationTable = (props) => {
     },
   };
 
-  const tableColumns = columns(t, handleSave, handleRemove).map((col) => {
-    if (!col.editable) {
-      return col;
-    }
+  const tableColumns = columns(t).map((col) => {
     return {
       ...col,
       onCell: (record: any) => ({
         record,
+        colName: col.key,
         editable: col.editable,
         dataIndex: col.dataIndex,
         title: col.title,
         handleSave,
+        handleRemove,
+        handleAdd,
       }),
     };
   });
@@ -157,75 +166,3 @@ const NavigationTable = (props) => {
 };
 
 export default NavigationTable;
-
-interface EditableCellProps {
-  title: React.ReactNode;
-  editable: boolean;
-  children: React.ReactNode;
-  dataIndex: any;
-  record: any;
-  handleSave: (record: any) => void;
-}
-const EditableCell: React.FC<EditableCellProps> = ({
-  title,
-  editable,
-  children,
-  dataIndex,
-  record,
-  handleSave,
-  ...restProps
-}) => {
-  const inputRef = useRef<Input>(null);
-  const form = useContext(EditableContext)!;
-
-  useEffect(() => {
-    if (record && form) form.setFieldsValue({ [dataIndex]: record[dataIndex] });
-  }, []);
-
-  const onPressEnter = async () => {
-    try {
-      const values = await form.validateFields();
-
-      handleSave({ ...record, ...values });
-    } catch (errInfo) {
-      console.log('Save failed:', errInfo);
-    }
-  };
-
-  let childNode = children;
-
-  if (editable) {
-    childNode = (
-      <Form.Item
-        style={{ margin: 0 }}
-        name={dataIndex}
-        rules={[
-          {
-            required: true,
-            message: `${title} is required.`,
-          },
-        ]}
-      >
-        <Input ref={inputRef} onPressEnter={onPressEnter} />
-      </Form.Item>
-    );
-  }
-
-  return <td {...restProps}>{childNode}</td>;
-};
-
-interface EditableRowProps {
-  index: number;
-}
-const EditableContext = React.createContext<FormInstance<any> | null>(null);
-const EditableRow: React.FC<EditableRowProps> = ({ index, ...props }) => {
-  const [form] = Form.useForm();
-
-  return (
-    <Form form={form} component={false}>
-      <EditableContext.Provider value={form}>
-        <tr {...props} />
-      </EditableContext.Provider>
-    </Form>
-  );
-};

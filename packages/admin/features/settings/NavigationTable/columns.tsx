@@ -15,13 +15,15 @@ export type EditableColumn = (ColumnTypes[any] & {
 const DragHandle = SortableHandle(() => (
   <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />
 ));
-export const columns = (t, handleSave, handleRemove): EditableColumn => {
+export const columns = (t): EditableColumn => {
   return [
     {
       dataIndex: 'sort',
       width: 50,
       className: 'drag-visible',
-      render: () => <DragHandle />,
+      render: (text, record: any) => {
+        if (record.status !== RowStatus.CREATE) return <DragHandle />;
+      },
     },
     {
       title: t('navigationTable.columns.title'),
@@ -49,20 +51,6 @@ export const columns = (t, handleSave, handleRemove): EditableColumn => {
       sorter: false,
       editable: false,
       dataIndex: 'action',
-      render: (value, record: any, index) => {
-        if (record.status === RowStatus.CREATE)
-          return (
-            <Button onClick={() => handleSave(record)} type="link">
-              {t('buttons.add')}
-            </Button>
-          );
-        else
-          return (
-            <Button onClick={() => handleRemove(record)} type="link">
-              {t('buttons.delete')}
-            </Button>
-          );
-      },
     },
   ];
 };
