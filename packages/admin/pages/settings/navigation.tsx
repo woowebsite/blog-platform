@@ -1,9 +1,9 @@
 import React from 'react';
-import { Layout, Button, PageHeader } from 'antd';
+import { Layout, PageHeader } from 'antd';
 
 // components
 import withAdminLayout from 'layout/AdminLayout';
-import RedirectButton from '~/components/RedirectButton';
+import Button from '~/components/Button';
 
 // graphql
 import { withApollo } from 'apollo/apollo';
@@ -13,6 +13,7 @@ const { Content } = Layout;
 
 const Navigation = (props) => {
   const { messages, t } = props;
+
   return (
     <>
       <PageHeader
@@ -22,9 +23,9 @@ const Navigation = (props) => {
         extra={[
           <Button key="3">Operation</Button>,
           <Button key="2">Operation</Button>,
-          <RedirectButton key="1" type="primary" url={'/users/new'}>
-            {t('buttons.create')}
-          </RedirectButton>,
+          <Button key="1" type="primary">
+            {t('buttons.save')}
+          </Button>,
         ]}
       />
       <Content>

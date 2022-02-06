@@ -22,6 +22,7 @@ const NavigationTable = (props) => {
   const t = (id) => formatMessage({ id });
   const [dataSource, setDataSource] = useState([]);
   const [upsertTaxonomy] = taxonomyService.upsertTaxonomy();
+  const [deleteTaxonomy] = taxonomyService.delete();
   const { data, loading, refetch } = taxonomyService.getAll({
     variables: { where: { taxonomy: TaxonomyType.MainMenu } },
     notifyOnNetworkStatusChange: true,
@@ -49,15 +50,7 @@ const NavigationTable = (props) => {
   }, [loading]);
 
   // EVENTS
-  const handleAdd = () => {
-    const newData = {
-      status: RowStatus.CREATE,
-      termName: '',
-      description: '',
-    };
 
-    setDataSource([...dataSource, newData]);
-  };
   const handleSave = (data) => {
     upsertTaxonomy({
       variables: {
@@ -69,7 +62,7 @@ const NavigationTable = (props) => {
           termName: data.termName,
         },
       },
-      onCompleted: refetch
+      onCompleted: refetch,
     });
 
     // Update dataSource
@@ -80,6 +73,11 @@ const NavigationTable = (props) => {
   };
 
   const handleRemove = (data) => {
+    deleteTaxonomy({
+      variables: { id: parseInt(data.id.toString()) },
+      onCompleted: refetch,
+    });
+
     const index = dataSource.findIndex((x) => x.id === data.id);
     const ds = _.update(
       dataSource,
@@ -148,7 +146,6 @@ const NavigationTable = (props) => {
         title: col.title,
         handleSave,
         handleRemove,
-        handleAdd,
       }),
     };
   });

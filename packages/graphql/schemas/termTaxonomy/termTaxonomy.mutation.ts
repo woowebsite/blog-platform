@@ -17,12 +17,21 @@ export const Mutation = {
           returning: true,
         },
       );
-      console.log('termTaxonomy', termTaxonomy);
 
       return termTaxonomy;
     },
     after: (termTaxonomy) => {
       return termTaxonomy;
+    },
+  }),
+  deleteTermTaxonomy: resolver(TermTaxonomy, {
+    before: async (findOptions, { id }, ctx) => {
+      await TermTaxonomy.destroy({ where: { id } });
+      findOptions.where = { id };
+      return findOptions;
+    },
+    after: (termTaxonomy) => {
+      return !termTaxonomy;
     },
   }),
 };

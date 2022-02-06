@@ -32,7 +32,6 @@ interface EditableCellProps {
   record: any;
   handleSave: (record: any) => void;
   handleRemove: (record: any) => void;
-  handleAdd: () => void;
 }
 export const EditableCell: React.FC<EditableCellProps> = ({
   title,
@@ -42,7 +41,6 @@ export const EditableCell: React.FC<EditableCellProps> = ({
   record,
   handleSave,
   handleRemove,
-  handleAdd,
   ...restProps
 }) => {
   const inputRef = useRef<Input>(null);
