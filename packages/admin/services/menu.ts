@@ -5,39 +5,6 @@ import { PermissionActions } from '~/features/authorized/AuthorizedTable/constan
 export default function getMenuData() {
   return [
     {
-      title: 'menu.settings.title',
-      key: 'settings',
-      icon: 'Setting',
-      count: 4,
-      position: 'left',
-      roles: [RoleType.SysAdmin],
-      children: [
-        {
-          title: 'menu.settings.configuration',
-          key: 'configuration',
-          url: '/settings/configuration',
-          visible: true,
-          roles: [RoleType.SysAdmin],
-          permission: {},
-        },
-        {
-          title: 'menu.settings.profile',
-          key: 'profile',
-          url: '/settings/profile',
-          visible: true,
-          roles: [RoleType.SysAdmin],
-          permission: {},
-        },
-        {
-          title: 'menu.settings.changePassword',
-          key: 'changePassword',
-          url: '/settings/changePassword',
-          visible: true,
-          roles: [RoleType.SysAdmin],
-        },
-      ],
-    },
-    {
       title: 'menu.users.title',
       key: 'users',
       icon: 'UserDouble',
@@ -130,6 +97,47 @@ export default function getMenuData() {
         },
       ],
     },
+    {
+      title: 'menu.settings.title',
+      key: 'settings',
+      icon: 'Setting',
+      count: 4,
+      position: 'left',
+      roles: [RoleType.SysAdmin],
+      children: [
+        {
+          title: 'menu.settings.configuration',
+          key: 'configuration',
+          url: '/settings/configuration',
+          visible: true,
+          roles: [RoleType.SysAdmin],
+          permission: {},
+        },
+        {
+          title: 'menu.settings.navigation',
+          key: 'navigation',
+          url: '/settings/navigation',
+          visible: true,
+          roles: [RoleType.SysAdmin],
+          permission: {},
+        },
+        {
+          title: 'menu.settings.profile',
+          key: 'profile',
+          url: '/settings/profile',
+          visible: true,
+          roles: [RoleType.SysAdmin],
+          permission: {},
+        },
+        {
+          title: 'menu.settings.changePassword',
+          key: 'changePassword',
+          url: '/settings/changePassword',
+          visible: true,
+          roles: [RoleType.SysAdmin],
+        },
+      ],
+    },
   ];
 }
 
@@ -150,18 +158,17 @@ export function getMenuByUrl(url) {
     return arr;
   }, []);
 
-  const menu = menus.find(x => x.url === url);
+  const menu = menus.find((x) => x.url === url);
   return menu;
 }
 
 export function hasPemission(session, url) {
-  return true; // TODO
   const menu = getMenuByUrl(url);
   const hasRole = menu.roles.includes(session.user.role_id);
   const userPermissions: any[] = session.user.role.permissions;
   const { featureName, code } = menu.permission;
   const userPermission = userPermissions.find(
-    x => x.featureName === featureName,
+    (x) => x.featureName === featureName,
   );
   const hasPermission = (userPermission && userPermission.code & code) !== 0;
 

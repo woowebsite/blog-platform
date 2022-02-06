@@ -15,6 +15,7 @@ export const en = {
         configuration: 'General',
         changePassword: 'Change password',
         profile: 'Basic information',
+        navigation: 'Navigation',
       },
       users: {
         title: 'Users',
@@ -66,6 +67,7 @@ export const en = {
       filter: 'Filter',
       create: 'Create',
       upload: 'Upload',
+      add: 'Add',
     },
     deleteModal: {
       title: 'Delete',
@@ -81,6 +83,20 @@ export const en = {
         phone: 'Phone',
         role: 'Role',
         createdAt: 'Created At',
+      },
+    },
+    navigation: {
+      fields: {
+        id: 'Id',
+        title: 'Title',
+        link: 'Link',
+      },
+    },
+    navigationTable: {
+      columns: {
+        id: 'Id',
+        title: 'Title',
+        link: 'Link',
       },
     },
     authorizedTable: {
