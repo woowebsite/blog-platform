@@ -1,17 +1,43 @@
 import React, { Fragment } from 'react';
 import Head from 'next/head';
 import { getComponent } from '~/lib/utils';
+import { withApollo } from 'apollo/apollo';
+import { gql, useQuery } from '@apollo/client';
 
 // Should get from database
 import layout from 'lib/layout';
 import components from '~/lib/components.config';
 
+const GET_TERM_TAXONOMIES = gql`
+  query GetTermTaxonomies($where: TermTaxonomyWhere) {
+    termTaxonomies(where: $where) {
+      rows {
+        id
+        taxonomy
+        termName
+        term {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
 interface PageProps {
   meta: any;
   layout: string[];
   components: any;
+  data: any;
 }
-const Page = ({ meta, layout, components }: PageProps) => {
+const Page = ({ meta, layout, components, data }: PageProps) => {
+  // const { data, loading, error, refetch } = useQuery(GET_TERM_TAXONOMIES, {
+  //   variables: {
+  //     where: { taxonomy: 'main_nav' },
+  //   },
+  // });
+  console.log('data', data);
+
   // render copmonent from layout
   const renderComponents = () => {
     if (typeof window === 'undefined') return;
@@ -44,14 +70,27 @@ const Page = ({ meta, layout, components }: PageProps) => {
 
 Page.getInitialProps = async (ctx: any) => {
   const { res, req, query, pathname } = ctx;
-  const meta = {
-    title: query.slug,
-    ogImage: {
-      url: 'https://wiki.tino.org/wp-content/uploads/2020/03/tro%CC%9B%CC%89-tha%CC%80nh-blogger-chuye%CC%82n-nghie%CC%A3%CC%82p.jpg',
-    },
-  };
+  const { apolloClient } = ctx;
+  try {
+    const { data, loading, error, refetch } = await apolloClient.query({
+      query: GET_TERM_TAXONOMIES,
+      variables: {
+        where: { taxonomy: 'main_nav' },
+      },
+    });
 
-  return { meta, components, layout };
+    const meta = {
+      title: query.slug,
+      data,
+      ogImage: {
+        url: 'https://wiki.tino.org/wp-content/uploads/2020/03/tro%CC%9B%CC%89-tha%CC%80nh-blogger-chuye%CC%82n-nghie%CC%A3%CC%82p.jpg',
+      },
+    };
+
+    return { meta, components, layout, data };
+  } catch (error) {
+    console.log('SSR Error: ', error);
+  }
 };
 
-export default Page;
+export default withApollo({ ssr: false })(Page);
