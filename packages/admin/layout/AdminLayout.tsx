@@ -43,7 +43,6 @@ function withAdminLayout(WrappedComponent) {
   AdminLayout.getInitialProps = async (context) => {
     const { ctx } = context;
     const session = await getSession({ req: ctx.req });
-    console.log('session', session);
 
     /*
      * This happens on server only, ctx.req is available means it's being

@@ -34,17 +34,21 @@ const server = new ApolloServer({
   schemaDirectives,
   playground: true,
   context: async ({ req }) => {
-    const session = await getSession({ req });
     let currentUser;
-    if (session && session.user) {
-      currentUser = await User.findOne({
-        where: { email: session.user.email },
-      })
-        .then(x => x.get({ plain: true }))
-        .catch(e => console.log('Error: ', e));
+
+    if (req.headers.cookie) {
+      const session = await getSession({ req });
+
+      if (session && session.user) {
+        currentUser = await User.findOne({
+          where: { email: session.user.email },
+        })
+          .then((x) => x.get({ plain: true }))
+          .catch((e) => console.log('Error: ', e));
+      }
     }
 
- // Sync database
+    // Sync database
     // {force: true} remove all data
     // {alter: true} modify table and keep data
     sequelize.sync({ alter: false });
