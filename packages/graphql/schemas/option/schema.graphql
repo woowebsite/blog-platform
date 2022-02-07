@@ -1,0 +1,33 @@
+type Option {
+  id: Int
+  name: String
+  value: String
+  status: String
+}
+
+input OptionWhere {
+  id: Int
+  name: String
+}
+
+input OptionInput {
+  id: Int
+  name: String
+  value: String
+  status: String
+}
+
+type OptionsPaged {
+  rows: [Option]
+  count: Int
+}
+
+type Query {
+  option(where: OptionWhere): Option
+  options(where: OptionWhere, limit: Int, offset: Int): OptionsPaged
+}
+
+type Mutation {
+  upsertOption(data: OptionInput): Option
+  deleteOption(id: Int): Int
+}
