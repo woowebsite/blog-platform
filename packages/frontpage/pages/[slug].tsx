@@ -7,22 +7,7 @@ import { gql, useQuery } from '@apollo/client';
 // Should get from database
 import layout from 'lib/layout';
 import components from '~/lib/components.config';
-
-const GET_TERM_TAXONOMIES = gql`
-  query GetTermTaxonomies($where: TermTaxonomyWhere) {
-    termTaxonomies(where: $where) {
-      rows {
-        id
-        taxonomy
-        termName
-        term {
-          id
-          name
-        }
-      }
-    }
-  }
-`;
+import { GET_TERM_TAXONOMIES } from '~/definitions/taxonomies-definitions';
 
 interface PageProps {
   meta: any;
@@ -31,14 +16,6 @@ interface PageProps {
   data: any;
 }
 const Page = ({ meta, layout, components, data }: PageProps) => {
-  // const { data, loading, error, refetch } = useQuery(GET_TERM_TAXONOMIES, {
-  //   variables: {
-  //     where: { taxonomy: 'main_nav' },
-  //   },
-  // });
-  console.log('data', data);
-
-  // render copmonent from layout
   const renderComponents = () => {
     if (typeof window === 'undefined') return;
     const elements = layout.map((componentName) => {

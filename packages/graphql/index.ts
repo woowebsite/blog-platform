@@ -37,7 +37,6 @@ const server = new ApolloServer({
     let currentUser;
 
     if (req.headers.cookie) {
-      console.log('req.headers xxx', req.headers);
       const session = await getSession({ req });
 
       if (session && session.user) {
