@@ -5,21 +5,22 @@ import { withApollo } from 'apollo/apollo';
 import { gql, useQuery } from '@apollo/client';
 
 // Should get from database
-import layout from 'lib/layout';
-import components from '~/lib/components.config';
-import { GET_TERM_TAXONOMIES } from '~/definitions/taxonomies-definitions';
+import { GET_OPTION } from '~/definitions/options-definitions';
+
+// data
+import TemplateConfig from '~/types/TemplateConfig';
 
 interface PageProps {
   meta: any;
-  layout: string[];
-  components: any;
   data: any;
 }
-const Page = ({ meta, layout, components, data }: PageProps) => {
+const Page = ({ meta, data }: PageProps) => {
+  const { template, config }: TemplateConfig = JSON.parse(data.option.value);
+
   const renderComponents = () => {
     if (typeof window === 'undefined') return;
-    const elements = layout.map((componentName) => {
-      const componentData = components[componentName];
+    const elements = template.map((componentName) => {
+      const componentData = config[componentName];
       const dataSource = componentData.dataSource;
       const comp = getComponent(componentData.componentName);
       const Component = React.createElement(comp, {
@@ -40,7 +41,7 @@ const Page = ({ meta, layout, components, data }: PageProps) => {
         <meta property="og:image" content={meta.ogImage.url} />
       </Head>
 
-      {renderComponents()}
+      {data && renderComponents()}
     </Fragment>
   );
 };
@@ -50,9 +51,9 @@ Page.getInitialProps = async (ctx: any) => {
   const { apolloClient } = ctx;
   try {
     const { data, loading, error, refetch } = await apolloClient.query({
-      query: GET_TERM_TAXONOMIES,
+      query: GET_OPTION,
       variables: {
-        where: { taxonomy: 'main_nav' },
+        where: { name: 'home' },
       },
     });
 
@@ -64,7 +65,7 @@ Page.getInitialProps = async (ctx: any) => {
       },
     };
 
-    return { meta, components, layout, data };
+    return { meta, data };
   } catch (error) {
     console.log('SSR Error: ', error);
   }
