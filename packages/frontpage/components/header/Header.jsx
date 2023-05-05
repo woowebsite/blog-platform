@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Logo from '~/components/Logo';
+import Logo from '~/components/logo';
 import MainMenu from '~/components/MainMenu';
 import AnchorButton from 'components/AnchorButton';
 import HumbergerMenu from 'components/HumbergerMenu';

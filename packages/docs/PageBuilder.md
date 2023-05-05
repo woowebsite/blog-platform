@@ -23,7 +23,7 @@ Create `layout.tsx` to render page
 ## User build
 - Publish landing.ant.design into Admin page
 
-# Elements
+# FrontPage / Dynamic Elements
 Example make Header component to dynamic
 * Step 1: create template.config.ts in Header. `dataSource` is default props
 ```js
@@ -38,22 +38,30 @@ export default {
 };
 ```
 
-* Step 2: Update into `components.config.ts`
+* Step 2: Register in `components/components.config.ts`
 ```js
 import Header from 'components/header/template.config';
 import KeyPair from '~/types/KeyPair';
 
 const components: KeyPair = {
   Header,
+  SliderTwo,
+  AnchorButton,
+  ScrollTop,
+  FooterTwo,
+  Content,
+  ...
 };
 export default components;
 ```
-* Step 3: Modify Header component to use `dataSource` props
+
+* Step 3: Use Header dynamic component to use `dataSource` props
 ```js
-const {  logo, color='default-color' } = this.props.dataSource;
+const {  logo, color='default-color' } = this.props;
 ```
 
-* Step 4: Update `layout.ts` in folder `\Home`
+* Step 4: Update `layout.ts` in folder `\Home` 
+TODO: don't understand, should be \[slug]
 ```js
 export default ['Header'];
 ```
